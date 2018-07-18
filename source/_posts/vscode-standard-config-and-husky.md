@@ -1,6 +1,6 @@
 ---
 title: 'vscode standard config and husky'
-date: 2018-07-17 16:48:59
+date: 2018-07-18 16:48:59
 tags:
 ---
 ## 前言
@@ -14,5 +14,3 @@ tags:
 }
 ```
 >2. husky在react项目中的提交检查配置
-
-
