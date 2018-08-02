@@ -18,7 +18,7 @@ tags:
     }
     ```
 1. 我们发现配置了之后，yml文件的输出依旧被处理成base64的格式？
-    ```
+    ``` 
     import orderApiConf from './order.yml'
     console.log('orderApiConf', orderApiConf)
     // orderApiConf data:text/yaml;base64,ZXhwb3J0I....
