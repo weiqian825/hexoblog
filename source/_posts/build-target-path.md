@@ -10,6 +10,15 @@ tags:
 
 ### 解决方案
 ```
+// package.json的配置
+{
+  "scripts": {
+    "oldbuild": "cross-env DISABLE_ESLINT=none roadhog build",
+    "build": "node scripts/build.js",
+  }
+}
+```
+```
     //child_process 模块提供了衍生子进程的功能，衍生一个 shell 并在 shell 上运行命令，当完成时会传入 stdout 和 stderr 到回调函数。
     const exec = require('child_process').exec
     //fs 模块提供了一些 API，用于以一种类似标准 POSIX 函数的方式与文件系统进行交互。
