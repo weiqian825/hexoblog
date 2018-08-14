@@ -20,9 +20,9 @@ tags:
 ## 日常操作
 ```
 hexo n #hexo new命令简写，用于新建一篇文章
-hexo g #hexo generate命令简写，用于生成静态文件
+hexo g #hexo generate命令简写，用于生成静态文件public
 hexo s #hexo server命令简写，用于启动服务器进行本地预览
-hexo d #hexo deploy命令简写，用于将本地文件发布到GitHub上
+hexo d #hexo deploy命令简写，用于将本地文件发布到GitHub上.deploy_git
 hexo clean #清楚缓存文件（db.json）和已生成的静态文件（public）
 //日常在后台编辑完代码时候，不要忘记向github推送代码哦
 git 日常操作一波
