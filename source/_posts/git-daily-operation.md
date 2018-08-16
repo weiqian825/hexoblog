@@ -92,7 +92,7 @@ git push origin :branch-name
     git push			                #保留以前的提交历史
 
     ```
-3. 提交的log因为某些原因比较乱，需要整理和重写log
+3. 提交的log因为某些原因比较乱，需要整理和[重写log](https://git-reference.readthedocs.io/zh_CN/latest/Git-Tools/Rewriting-History/)
     ```
     // 撤销-可以理解为未进行push的本地代码还原
     git rebase -i HEAD~3                #修改最近3次的提交		
