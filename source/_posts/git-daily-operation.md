@@ -98,7 +98,37 @@ git push origin :branch-name
     git rebase -i HEAD~3                #修改最近3次的提交		
     git commit -amend                   #改变最近一次提交记录	
     git rebase --continue               #自动应用其他2次提交
+    git rebase --abort                  #做了一波眼花缭乱的操作之后，想要放弃回到原点
     //压制(Squashing)提交，将多次提交合并为单一提交
         
+    ```
+4. 日常新建一个仓库之后要做的
+    ```
+    Git global setup
+    git config --global user.name "Qian Wei"
+    git config --global user.email "qian.wei@shopee.com"
+
+    Create a new repository
+    git clone ssh://gitlab@git.garena.com:2222/qian.wei/sentry.git
+    cd sentry
+    touch README.md
+    git add README.md
+    git commit -m "add README"
+    git push -u origin master
+
+    Existing folder
+    cd existing_folder
+    git init
+    git remote add origin ssh://gitlab@git.garena.com:2222/qian.wei/sentry.git
+    git add .
+    git commit -m "Initial commit"
+    git push -u origin master
+
+    Existing Git repository
+    cd existing_repo
+    git remote rename origin old-origin
+    git remote add origin ssh://gitlab@git.garena.com:2222/qian.wei/sentry.git
+    git push -u origin --all
+    git push -u origin --tags
     ```
    
