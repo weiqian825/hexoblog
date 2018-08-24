@@ -57,9 +57,11 @@ merge的更改
 六、删除分支
 
 ```
-// git push -d origin branch-name
-git branch -r -d origin/branch-name  
-git push origin :branch-name  
+git branch -r -d origin/branch-name // 删除本地的origin/branch-name游标
+git branch -d branch-name //删除本地分支，发生过merge的才可以
+git branch -D branch-name //强制删除本地分支
+git push origin :branch-name  //删除远程分支
+git push -d origin branch-name //删除远程分支
 ```
 
 七、常见工作场景及问题解决
@@ -130,5 +132,9 @@ git push origin :branch-name
     git remote add origin ssh://gitlab@git.garena.com:2222/qian.wei/sentry.git
     git push -u origin --all
     git push -u origin --tags
+
+    Existing Git repository2
+    cd existing_repo
+    git remote set-url origin https://github.com/weiqian93/vconsole.git
+    git push
     ```
-   
