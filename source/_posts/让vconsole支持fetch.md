@@ -5,7 +5,7 @@ tags:
 ---
 
 
-我们[前面]()说到，react项目接入vconsole后，发现不支持fetch，于是拉取[vconsole](https://github.com/Tencent/vConsole)库，看看下如何改写源码使它支持fetch
+我们[前面](https://weiqian93.github.io/2018/08/22/sentry%E5%92%8Cvconsole%E7%9A%84%E5%BA%94%E7%94%A8/)说到，react项目接入vconsole后，发现不支持fetch，于是拉取[vconsole](https://github.com/Tencent/vConsole)库，看看下如何改写源码使它支持fetch
 
 ## 一、搭建DevServer服务
 源码里面只有生成dist部分的命令，不能自己调试开发，所以我们需要搭建一个DevServer支持我们开发功能。
