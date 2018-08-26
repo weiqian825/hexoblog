@@ -3,8 +3,9 @@ title: hexo-deploy-error
 date: 2018-08-14 15:11:59
 tags:
 ---
-## 问题
-1. 部署(hexo d)错误1
+
+1. 部署(hexo d)错误
+
 ```
 INFO  Deploying: git
 INFO  Clearing .deploy_git folder...
@@ -20,6 +21,7 @@ hexo clean
 ```
 OK啦，可以正常工作了呢
 2. publickey不对
+
 ```
 INFO  Deploying: git
 INFO  Clearing .deploy_git folder...
@@ -41,19 +43,22 @@ and the repository exists.
 ```
 重新配置生成下 ssh key
 ```
-1. cd ~/.ssh/ 使用ssh-keygen命令生成ssh密钥 ssh-keygen -t rsa  -C "540518665@qq.com" （enter后，第一个选择文件路径名称 example1 存储key，第二三选择密码空格就可以）
-2. ssh-add ~/.ssh/example1
-3. github上setting的SSH添加本地生成的example1 (cat ~/.ssh/example1.pub)
-4. 测试 ssh git@github.com
+1⃣️  cd ~/.ssh/ 使用ssh-keygen命令生成ssh密钥 ssh-keygen -t rsa  -C "540518665@qq.com" （enter后，第一个选择文件路径名称 example1 存储key，第二三选择密码空格就可以）
+2⃣️  ssh-add ~/.ssh/example1
+3⃣️  github上setting的SSH添加本地生成的example1 (cat ~/.ssh/example1.pub)
+4⃣️  测试 ssh git@github.com
 ```
+
 3. 由于同步中未将Next主题提交。No layout: index.html
-也是为了下次同步最新的Next主题，故才有多地同步是更新Next主题方案。
-解决方案：直接获取/更新Next主题
+
 ``` 
-    cd your-hexo-site
-    git clone https://github.com/iissnan/hexo-theme-next themes/next
+// 也是为了下次同步最新的Next主题，故才有多地同步是更新Next主题方案。
+// 解决方案：直接获取/更新Next主题
+cd your-hexo-site
+git clone https://github.com/iissnan/hexo-theme-next themes/next
 ```
 ## 原理
+
 ```
 为什么会出现这个错呢？
 ```

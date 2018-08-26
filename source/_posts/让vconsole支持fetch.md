@@ -4,8 +4,8 @@ date: 2018-08-24 19:36:20
 tags:
 ---
 
-## 序言
-我们在前面说到，react项目接入vconsole后，发现不支持fetch，于是拉取[vconsole](https://github.com/Tencent/vConsole)库，看看下如何改写源码使它支持fetch
+
+我们[前面]()说到，react项目接入vconsole后，发现不支持fetch，于是拉取[vconsole](https://github.com/Tencent/vConsole)库，看看下如何改写源码使它支持fetch
 
 ## 一、搭建DevServer服务
 源码里面只有生成dist部分的命令，不能自己调试开发，所以我们需要搭建一个DevServer支持我们开发功能。
@@ -191,7 +191,70 @@ mockFetch(){
   }
 ```
 
-## 三、问题记录
+## 三、生成目标js
+```
+//webpack.config.js
+var pkg = require('./package.json');
+var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+module.exports = {
+  devtool: false,
+  entry: {
+    vconsole : './src/vconsole.js'
+  },
+  output: {
+    path: './dist',
+    filename: '[name].min.js',
+    library: 'VConsole',
+    libraryTarget: 'umd'
+    // umdNameDefine: true
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.html$/, loader: 'html?minimize=false'
+      },
+      { 
+        test: /\.js$/, loader: 'babel'
+      },
+      {
+        test: /\.less$/,
+        loader: 'style!css!less'
+        // loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader') // 将css独立打包
+      },
+      {
+        test: /\.json$/, loader: 'json'
+      }
+    ]
+  },
+  plugins: [
+    new webpack.BannerPlugin([
+        'vConsole v' + pkg.version + ' (' + pkg.homepage + ')',
+        '',
+    ].join('\n'))
+    // 开发调试项目的时候先去掉压缩命令，确认没有问题，生产版本再加上
+    // ,new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false
+    //   }
+    // })
+    // ,new ExtractTextPlugin('[name].min.css') // 将css独立打包
+  ]
+};
+//package.json
+{
+  "main": "dist/vconsole.min.js",
+  "scripts": {
+    "test": "mocha",
+    "dist": "webpack",
+    "dev": "webpack-dev-server --config webpack.dev.conf.js"
+  },
+}
+
+```
+
+## 四、问题记录
 1. header在window.XMLHtmlRequest里获取的方法是getAllResponseHeaders()。在fetch里面需要去遍历entries
 ```
     for (let pair of response.headers.entries()) {
