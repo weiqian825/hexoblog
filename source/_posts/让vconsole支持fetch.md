@@ -5,7 +5,7 @@ tags:
 ---
 
 ## 序言
-我们在前面说到，react项目接入vconsole后，发现w不支持fetch，于是拉取[vconsole](https://github.com/Tencent/vConsole)库，看看下如何改写源码使它支持fetch
+我们在前面说到，react项目接入vconsole后，发现不支持fetch，于是拉取[vconsole](https://github.com/Tencent/vConsole)库，看看下如何改写源码使它支持fetch
 
 ## 一、搭建DevServer服务
 源码里面只有生成dist部分的命令，不能自己调试开发，所以我们需要搭建一个DevServer支持我们开发功能。
@@ -106,8 +106,99 @@ npm i
 npm run dev
 ```
 
-## 二、如何劫持fetch呢
+## 二、如何拦截fetch呢
+vconsole里面可以抓到ajax的请求包，是在network里面对XMLHttpRequest进行了重写，拦截到相关信息记录下来并在日志面板显示。依照这个思路，我们初步想的是如何重写fetch又不影响它原来的功能，于是搜索到一篇很有意思的[博客](http://undefinedblog.com/how-to-intercept-fetch/)，利用fetch里面的respone.clone()这个特性在中间做一些拦截记录的工作如下。
+代码思路
+```
+mockFetch(){
+    let _fetch = window.fetch
+    let prevFetch = (url,init) => {
+        //做一些发请求前的记录工作
+        return _fetch(url,init).then(response => {
+            //利用response.clone()这个特性真正的做一些事情
+            response.clone().json().then(json => {
+                // 具体在这里
+            })
+            return response
+        })
+    }
+}
+```
+具体代码
+```
+   mockFetch() {
+    let _fetch = window.fetch;
+    if(!_fetch){ return; }
+    let that = this;
 
+    let prevFetch = (url,init) => {
+      let id = that.getUniqueID()
+      that.reqList[id] = {}
+      let item = that.reqList[id] || {};
+      let query = url.split('?'); 
+      item.id = id;
+      item.method = init.method||'GET';
+      item.url = query.shift(); 
 
+      if (query.length > 0) {
+        item.getData = {};
+        query = query.join('?'); // => 'b=c&d=?e'
+        query = query.split('&'); // => ['b=c', 'd=?e']
+        for (let q of query) {
+          q = q.split('=');
+          item.getData[ q[0] ] = q[1];
+        }
+      }
+
+      if (item.method == 'POST') {
+        // save POST data
+        if (tool.isString(data)) {
+          let arr = data.split('&');
+          item.postData = {};
+          for (let q of arr) {
+            q = q.split('=');
+            item.postData[ q[0] ] = q[1];
+          }
+        } else if (tool.isPlainObject(data)) {
+          item.postData = data;
+        }
+      }
+      // UNSENT
+      if (!item.startTime) {
+        item.startTime = (+new Date());
+      }
+      return _fetch(url,init).then(response => {
+        response.clone().json().then(json => {
+          item.endTime = +new Date(),
+          item.costTime = item.endTime - (item.startTime || item.endTime);
+          item.status = response.status;
+          item.header = {}
+          // 拿到header里面的东西
+          for (let pair of response.headers.entries()) {
+            item.header[pair[0]] = pair[1]
+            console.log(pair[0])
+          }
+          item.response = json;
+          item.readyState = 4;
+          item.responseType = response.type
+          that.updateRequest(id, item)
+          return json
+        })
+        return response
+      })
+    }
+    window.fetch = prevFetch
+  }
+```
+
+## 三、问题记录
+1. header在window.XMLHtmlRequest里获取的方法是getAllResponseHeaders()。在fetch里面需要去遍历entries
+```
+    for (let pair of response.headers.entries()) {
+        item.header[pair[0]] = pair[1]
+        console.log(pair[0])
+    }
+```
+2. response是json的时候，面板打印不出来具体数据，打印的是[object object]，看了下是vconsole里面重写了JSON.stringify()，重写的作用是？
 
 
