@@ -57,6 +57,50 @@ and the repository exists.
 cd your-hexo-site
 git clone https://github.com/iissnan/hexo-theme-next themes/next
 ```
+4. 又出现了git@github.com: Permission denied (publickey)，莫非这里的publickey的会过期，过一段就要添加一下？ssh-add ~/.ssh/id_rsa_hexo
+``` 
+➜  hexo git:(master) ✗ hexo d
+INFO  Deploying: git
+INFO  Clearing .deploy_git folder...
+INFO  Copying files from public folder...
+INFO  Copying files from extend dirs...
+[master 7a089f0] Site updated: 2018-09-06 15:50:05
+ 2 files changed, 74 insertions(+), 4 deletions(-)
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+FATAL Something's wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html
+Error: git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+    at ChildProcess.<anonymous> (/Users/weiqian/Desktop/shopee/hexo/node_modules/hexo-util/lib/spawn.js:37:17)
+    at ChildProcess.emit (events.js:182:13)
+    at maybeClose (internal/child_process.js:947:16)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:236:5)
+➜  hexo git:(master) ✗ ssh-add ~/.ssh/id_rsa_hexo
+Identity added: /Users/weiqian/.ssh/id_rsa_hexo (/Users/weiqian/.ssh/id_rsa_hexo)
+➜  hexo git:(master) ✗ ssh git@github.com
+PTY allocation request failed on channel 0
+Hi weiqian93! You've successfully authenticated, but GitHub does not provide shell access.
+Connection to github.com closed.
+➜  hexo git:(master) ✗ hexo d
+INFO  Deploying: git
+INFO  Clearing .deploy_git folder...
+INFO  Copying files from public folder...
+INFO  Copying files from extend dirs...
+On branch master
+nothing to commit, working tree clean
+To github.com:weiqian93/weiqian93.github.io.git
+   b07fcdf..7a089f0  HEAD -> master
+Branch 'master' set up to track remote branch 'master' from 'git@github.com:weiqian93/weiqian93.github.io.git'.
+INFO  Deploy done: git 
+``` 
+
 ## 原理
 
 ```
