@@ -31,7 +31,8 @@ tags:
   ],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self';"
 }
-
+```
+```
 // content_scripts.js
 var searchUrl = 'https://jira.garenanow.com/rest/api/2/search'
 window.fetch(searchUrl)
@@ -102,10 +103,12 @@ var searchUrl = `https://jira.garenanow.com/rest/api/2/search?jql=
       ]
     }
   }
-  
+ ```
+ ``` 
 // background.html
 <script type="module" src="background.js"></script>
-
+```
+```
 //background.js
 import GSheet from './gsheet.js'
 const gSheet = new GSheet()
@@ -126,6 +129,8 @@ async function generateSheet (data) {
   })
   window.chrome.tabs.create({ url: 'https://drive.google.com/drive/u/0/my-drive' })
 }
+```
+```
 
 //gsheet.js
 const identity = window.chrome.identity
