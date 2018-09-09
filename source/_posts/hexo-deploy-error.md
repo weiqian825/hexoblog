@@ -49,7 +49,7 @@ and the repository exists.
 4⃣️  测试 ssh git@github.com
 ```
 
-3. 由于同步中未将Next主题提交。No layout: index.html
+3. 由于同步中未将Next主题提交，页面白屏。No layout: index.html
 
 ``` 
 // 也是为了下次同步最新的Next主题，故才有多地同步是更新Next主题方案。
