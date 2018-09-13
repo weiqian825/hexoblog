@@ -272,9 +272,8 @@ http {
 
     }
 
-
     location / {
-        try_files     $uri       /hub-admin/index.html;
+        try_files     $uri       /index.html;
     }
     ## End of admin ##
 
@@ -285,7 +284,7 @@ http {
 执行如下脚本
 ```
 Windrunner git:(feature-ui) lsof -i :8080
-➜  Windrunner git:(feature-ui) sudo nginx -c /Users/weiqian/Desktop/shopee/Windrunner/deploy/nginx.conf
+➜  Windrunner git:(feature-ui) nginx -c /Users/weiqian/Desktop/shopee/Windrunner/deploy/nginx.conf
 ➜  Windrunner git:(feature-ui) nginx -t
 nginx: the configuration file /usr/local/etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /usr/local/etc/nginx/nginx.conf test is successful
@@ -407,6 +406,88 @@ File sizes after gzip:
 Successful!
 ```
 本地build成功了，我们放到了jenkins试了下果然编译成功了，访问线上页面是ok的。
+
+## 五、其他案例记录
+把域名 https://dp-admin.test.shopee.io/ 换成 https://dp-admin.test.shopee.io/id
+```
+user  root staff;
+worker_processes  1;
+
+events {
+  worker_connections  3003;  ## Default: 1024
+}
+
+http {
+  server {
+    listen 8080;
+
+    ## Start of admin_api ##
+
+    location ^~ /api/ {
+        proxy_pass            http://localhost:3003;
+    }
+
+    ## End of admin_api ##
+
+    ## Start of admin ##
+
+    location /static {
+        alias                    /Users/weiqian/Desktop/shopee/Windrunner/build/windrunner/static/;
+        expires                 30d;
+        access_log              off;
+
+    }
+
+    location /id {
+        try_files     $uri       /index.html;
+    }
+
+
+    location = /index.html {
+        alias                 /Users/weiqian/Desktop/shopee/Windrunner/build/windrunner/index.html;
+        expires               -1;
+        etag                  on;
+        include               gzip_params;
+    }
+    ## End of admin ##
+  }
+}
+```
+
+执行代码 
+
+```
+➜  Windrunner git:(test) lsof -i :8080
+COMMAND     PID    USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+Google    23206 weiqian  149u  IPv4 0xd18ff623edf3bb69      0t0  TCP localhost:59974->localhost:http-alt (ESTABLISHED)
+Google    23206 weiqian  202u  IPv4 0xd18ff623e145a789      0t0  TCP localhost:59936->localhost:http-alt (ESTABLISHED)
+nginx     35357 weiqian    8u  IPv4 0xd18ff623dafe64c9      0t0  TCP *:http-alt (LISTEN)
+nginx     35555 weiqian    7u  IPv4 0xd18ff623d9afbb69      0t0  TCP localhost:http-alt->localhost:59936 (ESTABLISHED)
+nginx     35555 weiqian    8u  IPv4 0xd18ff623dafe64c9      0t0  TCP *:http-alt (LISTEN)
+nginx     35555 weiqian   10u  IPv4 0xd18ff623f9b5f789      0t0  TCP localhost:http-alt->localhost:59974 (ESTABLISHED)
+➜  Windrunner git:(test) kill -9 23206 35357 35555
+➜  Windrunner git:(test) nginx -c /Users/weiqian/Desktop/shopee/Windrunner/deploy/nginx.conf
+nginx: [warn] the "user" directive makes sense only if the master process runs with super-user privileges, ignored in /Users/weiqian/Desktop/shopee/Windrunner/deploy/nginx.conf:1
+nginx: [emerg] open() "/Users/weiqian/Desktop/shopee/Windrunner/deploy/gzip_params" failed (2: No such file or directory) in /Users/weiqian/Desktop/shopee/Windrunner/deploy/nginx.conf:38
+```
+emerg报错gzip_params改正下nginx配置，屏蔽掉gzip_params
+```
+ location = /index.html {
+        alias                 /Users/weiqian/Desktop/shopee/Windrunner/build/windrunner/index.html;
+        expires               -1;
+        etag                  on;
+        #include              gzip_params;
+    }
+```
+重新起下服务试试
+```
+➜  Windrunner git:(test) nginx -s stop
+nginx: [alert] kill(35357, 15) failed (3: No such process)
+➜  Windrunner git:(test) nginx -c /Users/weiqian/Desktop/shopee/Windrunner/deploy/nginx.conf
+nginx: [warn] the "user" directive makes sense only if the master process runs with super-user privileges, ignored in /Users/weiqian/Desktop/shopee/Windrunner/deploy/nginx.conf:1
+```
+也是ok的呢。
+
 
 
 
