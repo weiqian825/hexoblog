@@ -1,7 +1,8 @@
 ---
 title: access-generator-api
 date: 2018-07-31 09:51:20
-type: "shopee"
+categories: 
+- shopee
 tags:
 - generate
 - request
