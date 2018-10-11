@@ -1,7 +1,10 @@
 ---
 title: 'nginx 本地部署及问题'
 date: 2018-09-07 20:15:35
+type: "nginx"
 tags:
+- nginx
+- localhost
 ---
 
 admin项目的nginx配置需要更改的时候，怎么样验证配置是否ok呢？

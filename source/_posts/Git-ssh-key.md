@@ -1,7 +1,11 @@
 ---
 title: Git ssh key
 date: 2018-07-17 15:10:27
+categories: 
+- tools
 tags:
+- git
+- sshkey
 ---
 
 ## 前言

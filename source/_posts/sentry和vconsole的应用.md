@@ -1,7 +1,11 @@
 ---
 title: 'sentry和vconsole的应用 '
 date: 2018-08-22 19:27:28
+categories: 
+- web
 tags:
+- sentry
+- vconsole
 ---
 ## 一、关于sentry
 [sentry](https://sentry.io/welcome/)业界最流行监控的开源框架，可以说是很多公司的监控系统的基础平台之一。[sentry本地搭建](https://juejin.im/post/5b226cbe51882574d02f9f62)可以自己试试哈，公司有自建的[站点](https://sentry.shopeemobile.com/sentry/)我们项目使用的react框架，接入方式查阅[官方文档](https://docs.sentry.io/clients/javascript/integrations/react/)即可。

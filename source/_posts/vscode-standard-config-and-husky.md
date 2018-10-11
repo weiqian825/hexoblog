@@ -1,7 +1,11 @@
 ---
 title: 'vscode standard config and husky'
 date: 2018-07-18 16:48:59
+type: "web"
 tags:
+- vscode
+- standardjs
+- husky
 ---
 ## 前言
 目前的项目代码遵循的规范是[standardjs](https://standardjs.com/)，用的IDE是[vscode](https://code.visualstudio.com/)，在代码提交的时候用[husky](https://github.com/typicode/husky)检查代码规范是否符合standards标准，配置如下

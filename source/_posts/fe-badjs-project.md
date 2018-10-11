@@ -1,7 +1,10 @@
 ---
 title: fe-badjs-project
 date: 2018-08-16 15:31:13
+categories: 
+- web
 tags:
+- badjs
 ---
 页面收集badjs核心是重写window.onerror事件，整理里面的错误信息，上报到接口。
 ```

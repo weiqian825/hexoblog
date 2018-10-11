@@ -1,7 +1,10 @@
 ---
 title: react-i18next的应用及工作原理
 date: 2018-09-26 10:37:57
+categories: 
+- react
 tags:
+- i18n
 ---
 ## 一、相关资料
 我理解的i18n的原理就是字符串替换。根据语言拉取不同的json文件，再根据key做一个映射取到预期的结果。

@@ -1,7 +1,12 @@
 ---
 title: nginx和lua的简单使用-openresty
 date: 2018-10-11 00:09:58
+categories: 
+- nginx
 tags:
+- nginx
+- lua
+- openresty
 ---
 [OpenResty](https://openresty.org/cn/) 是一款基于 NGINX 和 LuaJIT 的 Web 平台
 

@@ -1,7 +1,12 @@
 ---
 title: electron做go爬虫的gui
 date: 2018-08-30 15:20:45
+categories: 
+- web
 tags:
+- electron
+- go
+- gui
 ---
 一期要做的事情很简单，用electron给一个GO爬虫脚本做一个前端的GUI，顺便学习下[electron](https://electronjs.org/)
 ## 一、运行go爬虫

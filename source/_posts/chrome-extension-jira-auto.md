@@ -1,7 +1,11 @@
 ---
 title: chrome-extension-jira-auto
 date: 2018-09-06 16:38:11
+categories: 
+- web
 tags:
+- chrome-extension
+- jira
 ---
 [乞丐版的GUI](https://weiqian93.github.io/2018/08/30/electron%E5%81%9Ago%E7%88%AC%E8%99%AB%E7%9A%84gui/)可以抓取jira，生成本地的csv，我们希望这个东西能直接写到chrome drive里面去，每个人安装一个exe，是有些大材小用了。于是开始重新规划搞一个[goole插件](https://developer.chrome.com/extensions)，负责抓取数据和写入drive。[源码](https://github.com/weiqian93/jira-auto/tree/chrome-extension-demo)
 

@@ -1,7 +1,11 @@
 ---
 title: 本地搭建nginx https服务
 date: 2018-10-10 16:43:19
+categories: 
+- nginx
 tags:
+- nginx
+- https
 ---
 ## 前言
   前几天，pm反馈页面被运营商劫持，出现了小广告，我们检查了项目内并没有http链接，理论上都是https应该不回被劫持，后来发现反馈的页面是外部的投放资源是http，另外我们的nginx配置的兜底策略关闭掉直接访问页面的http链接。所以需要在本地验证一波https的nginx配置。

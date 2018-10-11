@@ -1,7 +1,10 @@
 ---
 title: access-generator-api
 date: 2018-07-31 09:51:20
+type: "shopee"
 tags:
+- generate
+- request
 ---
 
 ## 一、admin项目配置meepojs-loader

@@ -1,7 +1,10 @@
 ---
 title: Hexo 试用记录
 date: 2018-07-12 18:56:07
+categories: 
+- tools
 tags:  
+- hexo
 ---
 
 ## 前言

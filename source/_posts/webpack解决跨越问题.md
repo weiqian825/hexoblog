@@ -1,7 +1,11 @@
 ---
 title: webpack解决跨越问题
 date: 2018-09-21 18:34:25
+categories: 
+- react
 tags:
+- webpack
+- cors
 ---
 ## 一、场景
   本机起一个web的服务，访问后台接口

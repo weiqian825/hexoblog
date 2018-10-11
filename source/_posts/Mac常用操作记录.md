@@ -1,7 +1,10 @@
 ---
 title: Mac常用操作记录
 date: 2018-09-09 16:21:12
+categories: 
+- tools
 tags:
+- macos
 ---
 ## 一、iterm2快捷键
 1. 标签

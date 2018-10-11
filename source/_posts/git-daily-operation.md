@@ -1,7 +1,10 @@
 ---
 title: 'git daily operation '
 date: 2018-07-30 15:41:28
+categories: 
+- tools
 tags:
+- git
 ---
 
 一、新建代码库

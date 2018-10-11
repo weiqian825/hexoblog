@@ -1,7 +1,11 @@
 ---
 title: 让vconsole支持fetch
 date: 2018-08-24 19:36:20
+categories: 
+- web
 tags:
+- vconsole
+- fetch
 ---
 
 

@@ -1,7 +1,11 @@
 ---
 title: hexo-deploy-error
 date: 2018-08-14 15:11:59
+categories: 
+- tools
 tags:
+- hexo
+- deploy
 ---
 
 1. 部署(hexo d)错误
