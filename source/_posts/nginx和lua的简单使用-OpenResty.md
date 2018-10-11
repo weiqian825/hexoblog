@@ -294,6 +294,59 @@ http{
 }
 
 ```
+3. 存在问题，我们刚才的配置将所有的域名都转到了https实际上我们只想改自己配置，不要影响别人的业务
+
+```
+user root owner;
+
+worker_processes 1;
+
+events {
+ worker_connections 1024;
+}
+
+http{
+ server {
+    listen       80;
+    listen       443 ssl http2; 
+    server_name www.example.com;
+    ssl_certificate       /Users/weiqian/sshkey/demoCA/www.example.com.crt; 
+    ssl_certificate_key   /Users/weiqian/sshkey/demoCA/www.example.com.key; 
+
+    ## begin of digital purchase ##
+
+    location /produk-digital/m {
+        try_files     $uri      /digital-product/m/index.html;
+    }
+    location /digital-product/m {
+        try_files     $uri      /digital-product/m/index.html;
+    }
+   
+    location = /digital-product/m/index.html {
+        access_by_lua_block {
+          if ngx.var.scheme == 'http' then
+            return ngx.redirect("https://" .. ngx.var.host .. ngx.var.request_uri)
+          end
+        }
+        alias                   /Users/weiqian/sshkey/index.html;
+        access_log              off;
+        add_header              Cache-Control "no-cache, no-store";
+    }
+    location /digital-product/static/ {
+        alias                   /Users/weiqian/sshkey/;
+        access_log              off;
+        expires                 30d;
+    }
+    location /testlua/ {
+       alias        /Users/weiqian/sshkey/testlua/;
+       expires      30d;
+    }
+    ## end of digital purchase #
+
+  } 
+}
+```
+
 
 
 
