@@ -300,6 +300,7 @@ http{
 
 ```
 3. 存在问题，我们刚才的配置将所有的域名都转到了https实际上我们只想改自己配置，不要影响别人的业务
+向location = /digital-product/m/index.html添加链接即可
 
 ```
 user root owner;
@@ -351,7 +352,39 @@ http{
   } 
 }
 ```
+## 三、lua脚本配置关闭http链接，所有链接跳转到https
+在test和uat环境部署了配置之后都没有问题，live环境居然不生效， http://shopee.co.id/produk-digital/m/?debug=1 链接并没有跳转到https
+```
+➜  ~ dig shopee.co.id
 
+; <<>> DiG 9.10.6 <<>> shopee.co.id
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 47849
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 9, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;shopee.co.id.			IN	A
+
+;; ANSWER SECTION:
+shopee.co.id.		525	IN	A	119.28.186.208
+shopee.co.id.		525	IN	A	119.28.133.34
+shopee.co.id.		525	IN	A	119.28.20.204
+shopee.co.id.		525	IN	A	119.28.181.96
+shopee.co.id.		525	IN	A	119.28.45.94
+shopee.co.id.		525	IN	A	119.28.72.242
+shopee.co.id.		525	IN	A	119.28.177.221
+shopee.co.id.		525	IN	A	119.28.142.226
+shopee.co.id.		525	IN	A	119.28.188.88
+
+;; Query time: 20 msec
+;; SERVER: 10.12.77.201#53(10.12.77.201)
+;; WHEN: Sat Oct 13 15:51:58 CST 2018
+;; MSG SIZE  rcvd: 185
+```
+dig之后发现指向了香港集群，在部署一下香港集群，再访问ng配置生效了。为了加4行代码也是不容易。
 
 
 
