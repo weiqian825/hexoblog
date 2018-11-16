@@ -1,7 +1,13 @@
 ---
 title: ant-pro替换-dva框架
 date: 2018-11-16 16:39:24
+categories: 
+- shopee
 tags:
+- admin
+- dva
+- redux
+- yml
 ---
 
 背景参考[ant-pro 替换roadhog为webpack](https://weiqian93.github.io/2018/11/16/ant-pro-%E6%9B%BF%E6%8D%A2roadhog%E4%B8%BAwebpack/)
