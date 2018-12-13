@@ -66,8 +66,13 @@ git branch -D branch-name //强制删除本地分支
 git push origin :branch-name  //删除远程分支
 git push -d origin branch-name //删除远程分支
 ```
-
-七、常见工作场景及问题解决
+七、命令缩写等小技巧
+```
+git config -e --global
+vscode GitLens
+git cherry-pick xxxxx
+```
+八、常见工作场景及问题解决
 
 1. 在开发一个项目不同需求的时候，需要拉取不同的特性分支，此时常常会出现在4、5个特性分支上切换以配合不同开发测试联调需求，挺烦人的这种，没办法这就是工作呗，幸好Git强大一逼，stash完美的解决了这样的问题。
     ```
@@ -141,3 +146,4 @@ git push -d origin branch-name //删除远程分支
     git remote set-url origin https://github.com/weiqian93/vconsole.git
     git push
     ```
+5. cherry-pick、reset、revert
