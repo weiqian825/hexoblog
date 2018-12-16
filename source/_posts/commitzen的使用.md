@@ -5,32 +5,49 @@ tags:
 ---
 
 ## 前言
-commitzen的优点很多，规范、优雅、易管理等等好处不列举了，看下怎么使用
+[commitzen](https://github.com/commitizen/cz-cli)是一个帮助规范commit message的工具，优点很规范、优雅、易管理拓展等等好处不列举了，看下怎么使用
 
 ## 一、commit message 格式
 ```
 commit message
-  Header + Body + Footer(body|footer正常开发忽略)
+<type>(<scope>): <subject>
+// 空一行
+<body>
+// 空一行
+<footer>
+
 Header
   type + scope + subject
 type
   feat    : 新增加的功能（feature）
   fix     : 修复bug
   doc     : 文档，例如README
-  style   : 样式
+  style   : 格式（不影响代码运行的变动）
   refactor: 重构
   test    : 测试
   chore   : 构建过程或辅助工具的变动，项目版本变更等。
-  scope   : 提交的影响范围
-  subject : 提交内容的简要描述
+scope   : 影响的范围，比如数据层、控制层、视图层等等，视项目不同而不同
+subject : 提交内容的简要描述
 ```
 ## 二、commitizen(全局安装)
 1. 全局安装执行命令
 ```
 ➜  test npm install -g commitizen
 ➜  test  commitizen init cz-conventional-changelog --save --save-exact
+（或者 echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc）
 ```
-2. 全局安装demo
+2. 配置的改变
+```
+  "devDependencies": {
+    "cz-conventional-changelog": "^2.1.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+```
+3. 全局安装demo
 ```
 ➜  shopee mkdir test
 ➜  shopee cd test
@@ -57,17 +74,7 @@ Line 1 will be cropped at 100 characters. All other lines will be wrapped after 
   test:     Adding missing tests or correcting existing tests
 (Move up and down to reveal more choices)
 ```
-3. 配置的改变
-```
-  "devDependencies": {
-    "cz-conventional-changelog": "^2.1.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  }
-```
+
 ## 三、commitizen(局部安装)
 1. 局部安装执行命令（AB方法等效）
 ```
@@ -99,21 +106,33 @@ Line 1 will be cropped at 100 characters. All other lines will be wrapped after 
   }
   // 比全局的commitizen多了一个局部依赖commitizen
 ```
+3. cz-customizable和cz-conventional-changelog差不多，也是commitizen的adapter。
 ## 四、Change log
 1. 全局安装执行脚本
 ```
 npm install -g conventional-changelog-cli
 conventional-changelog -p angular -i CHANGELOG.md -w 
+为了方便起见我们把这个log的命令写到package.json
+{
+  "scripts": {
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w -r 0"
+  }
+}
+
 ```
 2. 全局安装demo
 ```
+如果你的提交都符合规范，那么执行脚本npm run changelog将生成文档包括下面三个部分
+New features
+Bug fixes
+Breaking changes.
 ➜  test git:(master) conventional-changelog -p angular -i CHANGELOG.md -w
 # 1.0.0 (2018-12-14)
 ### Features
 * **test commitlint and changelog:** test commitlint and changelog c6cb5f5
 ```
 ## 五、commitlint
-commitzen和change log添加了后，还有一个遗留问题，git commit 依旧能使用，忘记的时候还有可能不规范提交，commitlint了解下
+commitzen和change log添加了后，还有一个遗留问题，git commit 依旧能使用，忘记的时候还有可能不规范提交，[commitlint安装](https://marionebl.github.io/commitlint/#/guides-local-setup)了解下
 ```
 类似于 eslint commitlint支持配置文件类型
  .commitlint.config.js
@@ -126,15 +145,26 @@ commitzen和change log添加了后，还有一个遗留问题，git commit 依�
 ```
 1. 配置一
 ```
-commitlint.config.js配置
-module.exports = {
-  extends: ['@commitlint/config-conventional']
-}
-package.json添加
+# Install commitlint cli and conventional config
+npm install --save-dev @commitlint/{config-conventional,cli}
+# Configure commitlint to use conventional config
+echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
+npm install --save-dev husky
 {
+ "devDependencies": {
+    "@commitlint/cli": "^7.2.1",
+    "@commitlint/config-conventional": "^7.1.2",
+    "cz-conventional-changelog": "^2.1.0",
+    "husky": "^1.2.1"
+  },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
     }
   }
 }
@@ -152,24 +182,55 @@ test commitlint
 ✖   type may not be empty [type-empty]
 ✖   found 2 problems, 0 warningshusky > commit-msg hook failed (add --no-verify to bypass)
 ```
-2. 加强版本配置1
+2. 加强版本配置
 ```
-"devDependencies": {
-    "@commitlint/cli": "^7.2.1",
-    "@commitlint/config-conventional": "^7.1.2",
-    "@commitlint/prompt": "^7.2.1",
-    "commitizen": "^3.0.5",
-    "cz-conventional-changelog": "^2.1.0",
-    "husky": "^1.2.1"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  }
+ 
+```
+
+## 六、实践问题
+在加上了commitzen之后遇到一个问题，不同人提交终端提示不一样，最终的提交记录也不一样，有的有小图标，有的没有小图标？
+1. 有图标
+```
+➜  sniper git:(feature-train-tickets) npm run commit
+
+> sniper@0.1.0 commit /Users/weiqian/Desktop/sniper
+> npx git-cz
+
+npx: 1 安装成功，用时 3.681 秒
+? Select the type of change that you're committing:
+  🎡 ci:         CI related changes
+  ⚡️ perf:       A code change that improves performance
+  💍 test:       Adding missing tests
+❯ 🎸 feat:       A new feature
+  🐛 fix:        A bug fix
+  🤖 chore:      Build process or auxiliary tool changes
+  ✏️ docs:       Documentation only changes
+```
+2. 没图标
+```
+➜  sniper git:(feature-train-tickets) ✗ npm run commit
+
+> sniper@0.1.1 commit /Users/weiqian/Desktop/sniper
+> npx git-cz
+
+cz-cli@3.0.5, cz-conventional-changelog@2.1.0
+
+
+Line 1 will be cropped at 100 characters. All other lines will be wrapped after 100 characters.
+
+? Select the type of change that you're committing: (Use arrow keys)
+❯ feat:     A new feature
+  fix:      A bug fix
+  docs:     Documentation only changes
+  style:    Changes that do not affect the meaning of the code (white-space, formatting, missing semi
+-colons, etc)
+  refactor: A code change that neither fixes a bug nor adds a feature
+  perf:     A code change that improves performance
+```
+
+## 七、npm 一些其他命令
+```
+npm list -g --depth 0
+npm cache clean -f
+sudo chown -R $USER /Users/weiqian/Desktop/test
 ```
