@@ -115,10 +115,9 @@ c. 如果改了package.json，且package.json和lock文件不同，那么执行`
 回到了最初的地方，所以为了稳妥起见，如果你和我一样，不确定包的安装策略，又想安装到和服务端一样的包，那么就把node_modules和package-lock.json都删掉，再npm i
 在定位问题的时候，我一直都删除node_modules重装，但实际上包一直都没有更新，本地的antd包是一个没有bug的包，线上jenkins在编译的时候没有lock版本，会一直更新，antd的bug也就被更新进来了。
 ```
-2.  代码的package.json一直没有更新版本，为什么antd会有问题？
+2.  代码的package.json一直没有更新版本，为什么antd会有问题？npm是围绕着语义版本控制[semver](https://semver.org/lang/zh-CN/)的思想而设计的
 ```
-npm是围绕着语义版本控制（semver）的思想而设计的
-给定一个版本号：主版本号.次版本号.补丁版本号， 以下这三种情况需要增加相应的版本号:
+semver以x.y.z为格式，x为major，y为minor，z为patch 以下这三种情况需要增加相应的版本号:
 
 主版本号： 当API发生改变，并与之前的版本不兼容的时候
 次版本号： 当增加了功能，但是向后兼容的时候

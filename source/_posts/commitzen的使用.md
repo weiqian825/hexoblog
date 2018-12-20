@@ -107,7 +107,9 @@ Line 1 will be cropped at 100 characters. All other lines will be wrapped after 
   // 比全局的commitizen多了一个局部依赖commitizen
 ```
 3. cz-customizable和cz-conventional-changelog差不多，也是commitizen的adapter。
+
 ## 四、Change log
+
 1. 全局安装执行脚本
 ```
 npm install -g conventional-changelog-cli
@@ -182,10 +184,6 @@ test commitlint
 ✖   type may not be empty [type-empty]
 ✖   found 2 problems, 0 warningshusky > commit-msg hook failed (add --no-verify to bypass)
 ```
-2. 加强版本配置
-```
- 
-```
 
 ## 六、实践问题
 在加上了commitzen之后遇到一个问题，不同人提交终端提示不一样，最终的提交记录也不一样，有的有小图标，有的没有小图标？
@@ -227,6 +225,8 @@ Line 1 will be cropped at 100 characters. All other lines will be wrapped after 
   refactor: A code change that neither fixes a bug nor adds a feature
   perf:     A code change that improves performance
 ```
+从执行的命令可以看到，执行npx git-cz，有图标的实际上是在安装git-cz的adpater。没有图标的实际上是用的cz-cli@3.0.5的adapter，为什么执行同样的命令会发生不一样的结果，是因为npm的bin目录不一致导致，最简单的方法就是把依赖安装到项目本身，而不是用全局命令，保证所有人命令是统一的。
+
 
 ## 七、npm 一些其他命令
 ```
@@ -234,3 +234,34 @@ npm list -g --depth 0
 npm cache clean -f
 sudo chown -R $USER /Users/weiqian/Desktop/test
 ```
+
+➜  sniper git:(feature-train-tickets) ✗ npm list -g --depth 0
+/usr/local/lib
+├── @shopee/regen@0.3.0
+├── ant-design-pro-cli@1.0.0
+├── babel-eslint@8.2.5
+├── commitizen@3.0.5
+├── conventional-changelog-cli@2.0.11
+├── create-react-app@1.5.2
+├── cz@1.8.2
+├── depcheck@0.6.11
+├── download-csv@1.1.1
+├── eslint@5.0.1
+├── hexo@3.7.1
+├── hexo-cli@1.1.0
+├── husky@0.14.3
+├── n@2.1.11
+├── node-pre-gyp@0.11.0
+├── npm@6.4.1
+├── rapydscript@0.5.58
+├── rimraf@2.6.2
+├── sqlite3@4.0.2
+├── standard@11.0.1
+├── webpack@4.8.3
+├── webpack-cli@2.1.3
+├── webpack-dev-server@3.1.4
+├── whistle@1.10.10
+├── whistle.vase@0.1.0
+└── yarn@1.9.4
+
+
