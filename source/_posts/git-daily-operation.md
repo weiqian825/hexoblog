@@ -112,6 +112,74 @@ git cherry-pick xxxxx
     //压制(Squashing)提交，将多次提交合并为单一提交
         
     ```
+    demo
+    ```
+    ➜  Windrunner git:(test_notice) git log --oneline
+    ➜  Windrunner git:(test_notice) git rebase -i HEAD~10
+    ➜  Windrunner git:(fdd5404) ✗ git rebase --abort
+    ➜  Windrunner git:(test_notice) git rebase -i HEAD~10
+    Auto-merging src/components/Common/FieldForm/Comp/Form.js
+    CONFLICT (content): Merge conflict in     src/components/Common/FieldForm/Comp/Form.js
+    Auto-merging src/components/Common/FieldForm/Comp/Fields/ArrayField.js
+    CONFLICT (content): Merge conflict in     src/components/Common/FieldForm/Comp/Fields/ArrayField.js
+    Auto-merging config/webpack.dev.conf.js
+    CONFLICT (content): Merge conflict in config/webpack.dev.conf.js
+    error: could not apply bb1121f... fix: 🐛 fix the tree state
+    
+    Resolve all conflicts manually, mark them as resolved with
+    "git add/rm <conflicted_files>", then run "git rebase --continue".
+    You can instead skip this commit: run "git rebase --skip".
+    To abort and get back to the state before "git rebase", run "git rebase     --abort".
+    
+    Could not apply bb1121f... fix: 🐛 fix the tree state
+    ➜  Windrunner git:(aab68bb) ✗ git rebase --continue
+    config/webpack.dev.conf.js: needs merge
+    src/components/Common/FieldForm/Comp/Fields/ArrayField.js: needs merge
+    src/components/Common/FieldForm/Comp/Form.js: needs merge
+    You must edit all merge conflicts and then
+    mark them as resolved using git add
+    ➜  Windrunner git:(aab68bb) ✗ git add -A
+    ➜  Windrunner git:(aab68bb) ✗ git rebase --continue
+    [detached HEAD a9c1a3c] fix: 🐛 fix the tree state
+    Author: Qian Wei <qian.wei@shopee.com>
+    8 files changed, 121 insertions(+), 157 deletions(-)
+    rewrite src/components/Common/FieldForm/Comp/Fields/ObjectField.js (67%)
+   Auto-merging src/reducers/notice/fetch.js
+   Auto-merging src/pages/Notice/Setting.js
+   CONFLICT (content): Merge conflict in src/pages/Notice/Setting.js
+   error: could not apply 4036dcc... fix: 🐛 fix the state
+
+    Resolve all conflicts manually, mark them as resolved with
+    "git add/rm <conflicted_files>", then run "git rebase --continue".
+    You can instead skip this commit: run "git rebase --skip".
+    To abort and get back to the state before "git rebase", run "git rebase     --abort".
+    
+    Could not apply 4036dcc... fix: 🐛 fix the state
+    ➜  Windrunner git:(3e22969) ✗ git add -A
+    ➜  Windrunner git:(3e22969) ✗ git rebase --continue
+    [detached HEAD 42346cb] fix: 🐛 fix the state
+     Author: Qian Wei <qian.wei@shopee.com>
+     3 files changed, 41 insertions(+), 39 deletions(-)
+    Successfully rebased and updated refs/heads/test_notice.
+    ➜  Windrunner git:(test_notice) git log
+    ➜  Windrunner git:(test_notice) git push
+    To ssh://git.garena.com:2222/shopee/digital-purchase/Windrunner.git
+     ! [rejected]        test_notice -> test_notice (non-fast-forward)
+    error: failed to push some refs to     'ssh://gitlab@git.garena.com:2222/shopee/digital-purchase/Windrunner.git'
+    hint: Updates were rejected because the tip of your current branch is behind
+    hint: its remote counterpart. Integrate the remote changes (e.g.
+    hint: 'git pull ...') before pushing again.
+    hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+    ➜  Windrunner git:(test_notice) git pull
+    Auto-merging src/utils/utils.js
+    Auto-merging src/reducers/notice/fetch.js
+    CONFLICT (content): Merge conflict in src/reducers/notice/fetch.js
+    Auto-merging src/pages/Notice/Setting.js
+    CONFLICT (content): Merge conflict in src/pages/Notice/Setting.js
+    Automatic merge failed; fix conflicts and then commit the result.
+    ➜  Windrunner git:(test_notice) ✗ git add -A
+    ➜  Windrunner git:(test_notice) ✗ npm run commit
+        ```
 4. 日常新建一个仓库之后要做的
     ```
     Git global setup
