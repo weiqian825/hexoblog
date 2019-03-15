@@ -215,3 +215,12 @@ git cherry-pick xxxxx
     git push
     ```
 5. cherry-pick、reset、revert
+6. git对文件名的大小写不敏感，修改了文件的大小写，git st并没有改动
+   ```
+   //方法一 git设置忽略文件
+   git config core.ignorecase false
+   //方法二 git rm/add/commit xxx
+   git rm xxx
+   git add xxx
+   git commit xxx 
+   ```
