@@ -10,7 +10,7 @@ tags:
 ## 一、场景
   本机起一个web的服务，访问后台接口
   ```
-  window.fetch('https://dp-admin.test.shopee.io/api/order/list?page=1&page_size=10', {method: 'get'}).then(response => {
+  window.fetch('https://dp-admin.test.xxxxx.io/api/order/list?page=1&page_size=10', {method: 'get'}).then(response => {
     return response.json()
   }).then(data => {
     console.log(data)
@@ -18,7 +18,7 @@ tags:
   ```
   跨域报错如下，可以说很日常了
   ```
-  localhost/:1 Failed to load https://dp-admin.test.shopee.io/api/order/list?page=1&page_size=10: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:8080' is therefore not allowed access. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+  localhost/:1 Failed to load https://dp-admin.test.xxxxx.io/api/order/list?page=1&page_size=10: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:8080' is therefore not allowed access. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
   ```
 ## 二、本地搭建一个服务器做转发
    ```
@@ -26,7 +26,7 @@ tags:
    const express = require('express')
    const app = express()
 
-   const testHost = 'http://dp-admin.test.shopee.io'
+   const testHost = 'http://dp-admin.test.xxxxx.io'
    const dpHost = process.env.HOST || testHost
 
    app.use('/api', (req, res, next) => {
@@ -55,7 +55,7 @@ tags:
       '/api': 'http://localhost:3001'
     }
    ```
-   重新请求报错和刚才一样，为什么呢？ 页面的访问地址是http://localhost:8080/ 我们请求的地址是https://dp-admin.test.shopee.io/api/order/list?page=1&page_size=10，这里http://localhost:8080/ 和https://dp-admin.test.shopee.io明显不是一个域名，也就是说请求和devServer服务器是跨域的，则不存在devServer正常响应重新转发到'http://localhost:3001'，本地express服务是没有工作的。所以我们改下代码入下
+   重新请求报错和刚才一样，为什么呢？ 页面的访问地址是http://localhost:8080/ 我们请求的地址是https://dp-admin.test.xxxxx.io/api/order/list?page=1&page_size=10，这里http://localhost:8080/ 和https://dp-admin.test.xxxxx.io明显不是一个域名，也就是说请求和devServer服务器是跨域的，则不存在devServer正常响应重新转发到'http://localhost:3001'，本地express服务是没有工作的。所以我们改下代码入下
    ```
     // http://localhost:8080//api/order/list?page=1&page_size=10等效，保证和devServer同域名就好
     window.fetch('/api/order/list?page=1&page_size=10', {method: 'get'}).then(response => {
@@ -68,12 +68,12 @@ tags:
    ```
    {"err_code":32,"err_msg":"not login","data":null}
    ```
-   返回没有登陆，我们实际的页面已经登陆了https://dp-admin.test.shopee.io/ ，我们本地的页面地址是http://localhost:8080/ 这种情况下cookie明显写不进去，所以做如下设置
+   返回没有登陆，我们实际的页面已经登陆了https://dp-admin.test.xxxxx.io/ ，我们本地的页面地址是http://localhost:8080/ 这种情况下cookie明显写不进去，所以做如下设置
 
    ```
      devServer: {
         port: '8080',
-        host: 'dp-admin.test.shopee.io',
+        host: 'dp-admin.test.xxxxx.io',
         contentBase: path.join(__dirname, '../public'),
         compress: true,
         historyApiFallback: true,
@@ -107,23 +107,23 @@ tags:
    增加本地代理
    ```
    sudo vim /etc/hosts
-   127.0.0.1 dp-admin.test.shopee.io
+   127.0.0.1 dp-admin.test.xxxxx.io
    ```
    npm run dev
    ```
    ➜  webpack-cross git:(master) ✗ npm run dev
 
-    > webpack-cross@1.0.0 dev /Users/weiqian/Desktop/shopee/webpack-cross
+    > webpack-cross@1.0.0 dev /Users/weiqian/Desktop/xxxxx/webpack-cross
     > webpack-dev-server --inline --progress --config build/webpack.dev.conf.js
 
-    [HPM] Error occurred while trying to proxy request /api/order/list?page=1&page_size=10 from dp-admin.test.shopee.io:8080 to http://localhost:3001 (ECONNRESET) (https://nodejs.org/api/errors.html#errors_common_system_errors)
+    [HPM] Error occurred while trying to proxy request /api/order/list?page=1&page_size=10 from dp-admin.test.xxxxx.io:8080 to http://localhost:3001 (ECONNRESET) (https://nodejs.org/api/errors.html#errors_common_system_errors)
     // ECONNRESET (连接被重置): 一个连接被强行关闭。 这通常是因为连接到远程 socket 超时或重启。 常发生于 http 和 net 模块。
     // 浏览器显示错误
-   index.js:9 GET http://dp-admin.test.shopee.io:8080/api/order/list?page=1&page_size=10 504 (Gateway Timeout)
+   index.js:9 GET http://dp-admin.test.xxxxx.io:8080/api/order/list?page=1&page_size=10 504 (Gateway Timeout)
    // prxoy服务错误
     node data/proxy.js
 
-    req----> http://dp-admin.test.shopee.io/api/order/list?page=1&page_size=10
+    req----> http://dp-admin.test.xxxxx.io/api/order/list?page=1&page_size=10
     internal/streams/legacy.js:57
         throw er; // Unhandled stream error in pipe.
         ^
@@ -141,9 +141,9 @@ tags:
     npm ERR! A complete log of this run can be found in:
     npm ERR!     /Users/weiqian/.npm/_logs/2018-09-21T12_35_13_611Z-debug.log
 
-    // 我们访问线上页面 https://dp-admin.test.shopee.io/ 错误
+    // 我们访问线上页面 https://dp-admin.test.xxxxx.io/ 错误
    This site can’t be reached
-    dp-admin.test.shopee.io refused to connect.
+    dp-admin.test.xxxxx.io refused to connect.
     Try:
 
     Checking the connection
@@ -154,13 +154,13 @@ tags:
    ```
     // webpack
     devServer{
-        host: 'local.dp-admin.test.shopee.io'
+        host: 'local.dp-admin.test.xxxxx.io'
     } 
     // /etc/hosts
-    127.0.0.1 local.dp-admin.test.shopee.io
+    127.0.0.1 local.dp-admin.test.xxxxx.io
 
    ```
-   重新运行npm run proxy、 npm run dev错误是一样的，正常线上页面也无法访问。哦我们忘了删掉host里面的配置，express出错，删掉host配置的   127.0.0.1 dp-admin.test.shopee.io，世界和平啊！！！
+   重新运行npm run proxy、 npm run dev错误是一样的，正常线上页面也无法访问。哦我们忘了删掉host里面的配置，express出错，删掉host配置的   127.0.0.1 dp-admin.test.xxxxx.io，世界和平啊！！！
    [demo地址](https://github.com/weiqian93/react-demo/tree/master/webpack-cors)
 
 ## 四、create-my-app设置
@@ -170,7 +170,7 @@ tags:
   ```
   "scripts": {
     "proxy": "node data/proxy.js",
-    "start": "HOST=local.dp-admin.test.shopee.io react-scripts start",
+    "start": "HOST=local.dp-admin.test.xxxxx.io react-scripts start",
   },
   "proxy": {
     "/api": {

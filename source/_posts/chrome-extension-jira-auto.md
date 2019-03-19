@@ -61,7 +61,7 @@ var searchUrl = `https://jira.garenanow.com/rest/api/2/search?jql=
             AND resolution IN ("Unresolved", "Done")
             AND component IN ("FE","BE")
             AND status IN ("To Do", "In Progress", "Closed")
-            AND assignee IN ("qian.wei@shopee.com")`
+            AND assignee IN ("qian.wei@xxxxx.com")`
 ```
 这里有一个遗留的问题，就是jira的登陆态问题，刚开始猜想是否可以直接从插件部分输入一次用户的密码和账户，测试发现同样的请求接口，cookie里面的succLogin一直返回false，并且缺少了正常登陆态cookie里面的sessionid，估计这里平台这里做了一些登陆的处理，所以我们登陆模块暂时处理为，引导用户登陆jira，然后再通过插件正常查询jira里面的数据，体验上也不会有太大问题。
 

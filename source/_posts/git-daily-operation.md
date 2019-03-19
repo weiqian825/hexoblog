@@ -141,7 +141,7 @@ git cherry-pick xxxxx
     ➜  Windrunner git:(aab68bb) ✗ git add -A
     ➜  Windrunner git:(aab68bb) ✗ git rebase --continue
     [detached HEAD a9c1a3c] fix: 🐛 fix the tree state
-    Author: Qian Wei <qian.wei@shopee.com>
+    Author: Qian Wei <qian.wei@xxxxx.com>
     8 files changed, 121 insertions(+), 157 deletions(-)
     rewrite src/components/Common/FieldForm/Comp/Fields/ObjectField.js (67%)
    Auto-merging src/reducers/notice/fetch.js
@@ -158,14 +158,14 @@ git cherry-pick xxxxx
     ➜  Windrunner git:(3e22969) ✗ git add -A
     ➜  Windrunner git:(3e22969) ✗ git rebase --continue
     [detached HEAD 42346cb] fix: 🐛 fix the state
-     Author: Qian Wei <qian.wei@shopee.com>
+     Author: Qian Wei <qian.wei@xxxxx.com>
      3 files changed, 41 insertions(+), 39 deletions(-)
     Successfully rebased and updated refs/heads/test_notice.
     ➜  Windrunner git:(test_notice) git log
     ➜  Windrunner git:(test_notice) git push
-    To ssh://git.garena.com:2222/shopee/digital-purchase/Windrunner.git
+    To ssh://git.garena.com:2222/xxxxx/digital-purchase/Windrunner.git
      ! [rejected]        test_notice -> test_notice (non-fast-forward)
-    error: failed to push some refs to     'ssh://gitlab@git.garena.com:2222/shopee/digital-purchase/Windrunner.git'
+    error: failed to push some refs to     'ssh://gitlab@git.garena.com:2222/xxxxx/digital-purchase/Windrunner.git'
     hint: Updates were rejected because the tip of your current branch is behind
     hint: its remote counterpart. Integrate the remote changes (e.g.
     hint: 'git pull ...') before pushing again.
@@ -184,7 +184,7 @@ git cherry-pick xxxxx
     ```
     Git global setup
     git config --global user.name "Qian Wei"
-    git config --global user.email "qian.wei@shopee.com"
+    git config --global user.email "qian.wei@xxxxx.com"
 
     Create a new repository
     git clone ssh://gitlab@git.garena.com:2222/qian.wei/sentry.git

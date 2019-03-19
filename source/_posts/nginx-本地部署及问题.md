@@ -56,7 +56,7 @@ lsof -i :端口号| grep LISTEN | awk '{ print $2; }' | head -n 2 | grep -v PID
 
 server {
     listen       80;
-    server_name  c-api-dp.{{ domain_env_flag }}shopee.{{ domain_suffix }};
+    server_name  c-api-dp.{{ domain_env_flag }}xxxxx.{{ domain_suffix }};
     access_log   off;
 
     location / {
@@ -71,7 +71,7 @@ server {
 
 server {
     listen       80;
-    server_name  dp-admin.{{ domain_env_flag }}shopee.io;
+    server_name  dp-admin.{{ domain_env_flag }}xxxxx.io;
 
     location / {
         return   307  https://$host$request_uri;
@@ -80,7 +80,7 @@ server {
 
 server {
     listen       443 ssl http2;
-    server_name  dp-admin.{{ domain_env_flag }}shopee.io;
+    server_name  dp-admin.{{ domain_env_flag }}xxxxx.io;
 
     ## default page ##
 
@@ -93,7 +93,7 @@ server {
     ## Start of hub_admin ##
 
     location /hub/static/ {
-        alias                   /data/shopee/{{ env }}/{{ project_name }}-{{ cid }}/hub/static/;
+        alias                   /data/xxxxx/{{ env }}/{{ project_name }}-{{ cid }}/hub/static/;
         expires                 30d;
         access_log              off;
 
@@ -105,7 +105,7 @@ server {
     }
 
     location = /hub/index.html {
-        alias                 /data/shopee/{{ env }}/{{ project_name }}-{{ cid }}/hub/index.html;
+        alias                 /data/xxxxx/{{ env }}/{{ project_name }}-{{ cid }}/hub/index.html;
         expires               -1;
         etag                  on;
         include               gzip_params;
@@ -116,7 +116,7 @@ server {
     ## Start of dp_admin_portal ##
 
     location /digital-purchase/static/ {
-        alias                   /data/shopee/{{ env }}/{{ project_name }}-{{ cid }}/windrunner/static/;
+        alias                   /data/xxxxx/{{ env }}/{{ project_name }}-{{ cid }}/windrunner/static/;
         expires                 30d;
         access_log              off;
 
@@ -128,7 +128,7 @@ server {
     }
 
     location = /digital-purchase/index.html {
-        alias                 /data/shopee/{{ env }}/{{ project_name }}-{{ cid }}/windrunner/index.html;
+        alias                 /data/xxxxx/{{ env }}/{{ project_name }}-{{ cid }}/windrunner/index.html;
         expires               -1;
         etag                  on;
         include               gzip_params;
@@ -157,7 +157,7 @@ server {
 
 server {
     listen       80;
-    server_name  c-api-dp.{{ domain_env_flag }}shopee.{{ domain_suffix }};
+    server_name  c-api-dp.{{ domain_env_flag }}xxxxx.{{ domain_suffix }};
     access_log   off;
 
     location / {
@@ -172,7 +172,7 @@ server {
 
 server {
     listen       80;
-    server_name  dp-admin.{{ domain_env_flag }}shopee.io;
+    server_name  dp-admin.{{ domain_env_flag }}xxxxx.io;
 
     location / {
         return   307  https://$host$request_uri;
@@ -181,12 +181,12 @@ server {
 
 server {
     listen       443 ssl http2;
-    server_name  dp-admin.{{ domain_env_flag }}shopee.io;
+    server_name  dp-admin.{{ domain_env_flag }}xxxxx.io;
 
     ## Start of hub_admin ##
 
     location /hub/static/ {
-        alias                   /data/shopee/{{ env }}/{{ project_name }}-{{ cid }}/hub/static/;
+        alias                   /data/xxxxx/{{ env }}/{{ project_name }}-{{ cid }}/hub/static/;
         expires                 30d;
         access_log              off;
 
@@ -198,7 +198,7 @@ server {
     }
 
     location = /hub/index.html {
-        alias                 /data/shopee/{{ env }}/{{ project_name }}-{{ cid }}/hub/index.html;
+        alias                 /data/xxxxx/{{ env }}/{{ project_name }}-{{ cid }}/hub/index.html;
         expires               -1;
         etag                  on;
         include               gzip_params;
@@ -209,7 +209,7 @@ server {
     ## Start of dp_admin_portal ##
 
     location /static/ {
-        alias                   /data/shopee/{{ env }}/{{ project_name }}-{{ cid }}/windrunner/static/;
+        alias                   /data/xxxxx/{{ env }}/{{ project_name }}-{{ cid }}/windrunner/static/;
         expires                 30d;
         access_log              off;
 
@@ -221,7 +221,7 @@ server {
     }
 
     location = /index.html {
-        alias                 /data/shopee/{{ env }}/{{ project_name }}-{{ cid }}/windrunner/index.html;
+        alias                 /data/xxxxx/{{ env }}/{{ project_name }}-{{ cid }}/windrunner/index.html;
         expires               -1;
         etag                  on;
         include               gzip_params;
@@ -269,7 +269,7 @@ http {
     ## Start of admin ##
 
     location /static{
-        alias                    /Users/weiqian/Desktop/shopee/Windrunner/build/windrunner/static/;
+        alias                    /Users/weiqian/Desktop/xxxxx/Windrunner/build/windrunner/static/;
         expires                 30d;
         access_log              off;
 
@@ -287,7 +287,7 @@ http {
 执行如下脚本
 ```
 Windrunner git:(feature-ui) lsof -i :8080
-➜  Windrunner git:(feature-ui) nginx -c /Users/weiqian/Desktop/shopee/Windrunner/deploy/nginx.conf
+➜  Windrunner git:(feature-ui) nginx -c /Users/weiqian/Desktop/xxxxx/Windrunner/deploy/nginx.conf
 ➜  Windrunner git:(feature-ui) nginx -t
 nginx: the configuration file /usr/local/etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /usr/local/etc/nginx/nginx.conf test is successful
@@ -331,7 +331,7 @@ npm run build
 ```
 报错如下
 ```
-> ant-design-pro@1.3.0 build /Users/weiqian/Desktop/shopee/Windrunner
+> ant-design-pro@1.3.0 build /Users/weiqian/Desktop/xxxxx/Windrunner
 > node scripts/build.js
 
 { Error: Command failed: npm run oldbuild
@@ -340,9 +340,9 @@ Warning: DISABLE_ESLINT is deprecated, use ESLINT=none instead has been deprecat
 TypeError [ERR_INVALID_ARG_TYPE]: The "chunk" argument must be one of type string or Buffer. Received type undefined
     at validChunk (_stream_writable.js:259:10)
     at Socket.Writable.write (_stream_writable.js:293:21)
-    at nodeDeprecate (/Users/weiqian/Desktop/shopee/Windrunner/node_modules/deprecate/index.js:22:22)
-    at deprecate (/Users/weiqian/Desktop/shopee/Windrunner/node_modules/deprecate/index.js:11:3)
-    at Object.<anonymous> (/Users/weiqian/Desktop/shopee/Windrunner/node_modules/af-webpack/lib/getConfig.js:81:26)
+    at nodeDeprecate (/Users/weiqian/Desktop/xxxxx/Windrunner/node_modules/deprecate/index.js:22:22)
+    at deprecate (/Users/weiqian/Desktop/xxxxx/Windrunner/node_modules/deprecate/index.js:11:3)
+    at Object.<anonymous> (/Users/weiqian/Desktop/xxxxx/Windrunner/node_modules/af-webpack/lib/getConfig.js:81:26)
     at Module._compile (internal/modules/cjs/loader.js:678:30)
     at Object.Module._extensions..js (internal/modules/cjs/loader.js:689:10)
     at Module.load (internal/modules/cjs/loader.js:589:32)
@@ -350,7 +350,7 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "chunk" argument must be one of type strin
     at Function.Module._load (internal/modules/cjs/loader.js:520:3)
     at Module.require (internal/modules/cjs/loader.js:626:17)
     at require (internal/modules/cjs/helpers.js:20:18)
-    at Object.<anonymous> (/Users/weiqian/Desktop/shopee/Windrunner/node_modules/af-webpack/getConfig.js:1:18)
+    at Object.<anonymous> (/Users/weiqian/Desktop/xxxxx/Windrunner/node_modules/af-webpack/getConfig.js:1:18)
     at Module._compile (internal/modules/cjs/loader.js:678:30)
     at Object.Module._extensions..js (internal/modules/cjs/loader.js:689:10)
     at Module.load (internal/modules/cjs/loader.js:589:32)
@@ -391,11 +391,11 @@ npm的package.json配置
 ```
 ➜  Windrunner git:(feature-ui) ✗ npm run build
 
-> ant-design-pro@1.3.0 build /Users/weiqian/Desktop/shopee/Windrunner
+> ant-design-pro@1.3.0 build /Users/weiqian/Desktop/xxxxx/Windrunner
 > node scripts/build.js
 
 
-> ant-design-pro@1.3.0 oldbuild /Users/weiqian/Desktop/shopee/Windrunner
+> ant-design-pro@1.3.0 oldbuild /Users/weiqian/Desktop/xxxxx/Windrunner
 > cross-env ESLINT=none roadhog build
 
 Compiled successfully.
@@ -411,7 +411,7 @@ Successful!
 本地build成功了，我们放到了jenkins试了下果然编译成功了，访问线上页面是ok的。
 
 ## 五、其他案例记录
-把域名 https://dp-admin.test.shopee.io/ 换成 https://dp-admin.test.shopee.io/id
+把域名 https://dp-admin.test.xxxxx.io/ 换成 https://dp-admin.test.xxxxx.io/id
 ```
 user  root staff;
 worker_processes  1;
@@ -435,7 +435,7 @@ http {
     ## Start of admin ##
 
     location /static {
-        alias                    /Users/weiqian/Desktop/shopee/Windrunner/build/windrunner/static/;
+        alias                    /Users/weiqian/Desktop/xxxxx/Windrunner/build/windrunner/static/;
         expires                 30d;
         access_log              off;
 
@@ -447,7 +447,7 @@ http {
 
 
     location = /index.html {
-        alias                 /Users/weiqian/Desktop/shopee/Windrunner/build/windrunner/index.html;
+        alias                 /Users/weiqian/Desktop/xxxxx/Windrunner/build/windrunner/index.html;
         expires               -1;
         etag                  on;
         include               gzip_params;
@@ -469,14 +469,14 @@ nginx     35555 weiqian    7u  IPv4 0xd18ff623d9afbb69      0t0  TCP localhost:h
 nginx     35555 weiqian    8u  IPv4 0xd18ff623dafe64c9      0t0  TCP *:http-alt (LISTEN)
 nginx     35555 weiqian   10u  IPv4 0xd18ff623f9b5f789      0t0  TCP localhost:http-alt->localhost:59974 (ESTABLISHED)
 ➜  Windrunner git:(test) kill -9 23206 35357 35555
-➜  Windrunner git:(test) nginx -c /Users/weiqian/Desktop/shopee/Windrunner/deploy/nginx.conf
-nginx: [warn] the "user" directive makes sense only if the master process runs with super-user privileges, ignored in /Users/weiqian/Desktop/shopee/Windrunner/deploy/nginx.conf:1
-nginx: [emerg] open() "/Users/weiqian/Desktop/shopee/Windrunner/deploy/gzip_params" failed (2: No such file or directory) in /Users/weiqian/Desktop/shopee/Windrunner/deploy/nginx.conf:38
+➜  Windrunner git:(test) nginx -c /Users/weiqian/Desktop/xxxxx/Windrunner/deploy/nginx.conf
+nginx: [warn] the "user" directive makes sense only if the master process runs with super-user privileges, ignored in /Users/weiqian/Desktop/xxxxx/Windrunner/deploy/nginx.conf:1
+nginx: [emerg] open() "/Users/weiqian/Desktop/xxxxx/Windrunner/deploy/gzip_params" failed (2: No such file or directory) in /Users/weiqian/Desktop/xxxxx/Windrunner/deploy/nginx.conf:38
 ```
 emerg报错gzip_params改正下nginx配置，屏蔽掉gzip_params
 ```
  location = /index.html {
-        alias                 /Users/weiqian/Desktop/shopee/Windrunner/build/windrunner/index.html;
+        alias                 /Users/weiqian/Desktop/xxxxx/Windrunner/build/windrunner/index.html;
         expires               -1;
         etag                  on;
         #include              gzip_params;
@@ -486,8 +486,8 @@ emerg报错gzip_params改正下nginx配置，屏蔽掉gzip_params
 ```
 ➜  Windrunner git:(test) nginx -s stop
 nginx: [alert] kill(35357, 15) failed (3: No such process)
-➜  Windrunner git:(test) nginx -c /Users/weiqian/Desktop/shopee/Windrunner/deploy/nginx.conf
-nginx: [warn] the "user" directive makes sense only if the master process runs with super-user privileges, ignored in /Users/weiqian/Desktop/shopee/Windrunner/deploy/nginx.conf:1
+➜  Windrunner git:(test) nginx -c /Users/weiqian/Desktop/xxxxx/Windrunner/deploy/nginx.conf
+nginx: [warn] the "user" directive makes sense only if the master process runs with super-user privileges, ignored in /Users/weiqian/Desktop/xxxxx/Windrunner/deploy/nginx.conf:1
 ```
 也是ok的呢。
 

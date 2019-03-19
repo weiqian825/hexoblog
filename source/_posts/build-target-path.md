@@ -2,7 +2,7 @@
 title: build-target-path
 date: 2018-08-01 16:23:55
 categories: 
-- shopee
+- xxxxx
 tags:
 - webpack
 - build
@@ -98,7 +98,7 @@ indexFile <!DOCTYPE html>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SHOPEE DP</title>
+  <title>xxxxx DP</title>
   <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link href="/digital-purchase/static/index.e10a2168.css" rel="stylesheet"></head>
 
@@ -114,7 +114,7 @@ indexFile after <!DOCTYPE html>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SHOPEE DP</title>
+  <title>xxxxx DP</title>
   <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link href="/digital-purchase/static/css/index.e10a2168.css" rel="stylesheet"></head>
 

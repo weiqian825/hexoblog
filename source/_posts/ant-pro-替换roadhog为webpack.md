@@ -2,7 +2,7 @@
 title: ant-pro 替换roadhog为webpack
 date: 2018-11-16 12:29:22
 categories: 
-- shopee
+- xxxxx
 tags:
 - webpack
 - admin
@@ -194,7 +194,7 @@ module.exports = merge(baseWebpackConfig, {
   ],
   devServer: {
     port: 80,
-    host: 'local.dp-admin.test.shopee.io',
+    host: 'local.dp-admin.test.xxxxx.io',
     historyApiFallback: true,
     open: true,
     proxy: {

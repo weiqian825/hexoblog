@@ -2,14 +2,14 @@
 title: access-generator-api
 date: 2018-07-31 09:51:20
 categories: 
-- shopee
+- xxxxx
 tags:
 - generate
 - request
 ---
 
 ## 一、admin项目配置meepojs-loader
-1. 接入meepojs？ 项目里面公用的发请求的模块，需新引入[meepojs](https://git.garena.com/shopee/digital-purchase/meepojs)和[meepojs-loader](https://git.garena.com/shopee/digital-purchase/meepojs-loader)。(loader用于对源代码转换，loader可以再你import或者加载模块时候预处理文件，推荐在webpack.config.js中指定loader)
+1. 接入meepojs？ 项目里面公用的发请求的模块，需新引入[meepojs](https://git.garena.com/xxxxx/digital-purchase/meepojs)和[meepojs-loader](https://git.garena.com/xxxxx/digital-purchase/meepojs-loader)。(loader用于对源代码转换，loader可以再你import或者加载模块时候预处理文件，推荐在webpack.config.js中指定loader)
 2. admin项目使用的ant-design-pro框架底层使用构建打包工是[roadhog](https://github.com/sorrycc/roadhog/blob/master/README_zh-cn.md)，roadhog可以理解为被阉割的[webpack](https://webpack.docschina.org/concepts/)，查找npm和git，roadhog未暴露loader接口？ 查找issues发现webpack.config.js配置loader即可。
 ![Alt text](/images/roadhog_loader_issues.png)
     ```

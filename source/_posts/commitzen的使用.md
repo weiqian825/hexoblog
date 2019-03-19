@@ -49,8 +49,8 @@ subject : 提交内容的简要描述
 ```
 3. 全局安装demo
 ```
-➜  shopee mkdir test
-➜  shopee cd test
+➜  xxxxx mkdir test
+➜  xxxxx cd test
 ➜  test npm init
 ➜  test npm i
 ➜  test npm install -g commitizen
@@ -237,7 +237,7 @@ sudo chown -R $USER /Users/weiqian/Desktop/test
 
 ➜  sniper git:(feature-train-tickets) ✗ npm list -g --depth 0
 /usr/local/lib
-├── @shopee/regen@0.3.0
+├── @xxxxx/regen@0.3.0
 ├── ant-design-pro-cli@1.0.0
 ├── babel-eslint@8.2.5
 ├── commitizen@3.0.5

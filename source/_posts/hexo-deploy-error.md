@@ -82,7 +82,7 @@ fatal: Could not read from remote repository.
 Please make sure you have the correct access rights
 and the repository exists.
 
-    at ChildProcess.<anonymous> (/Users/weiqian/Desktop/shopee/hexo/node_modules/hexo-util/lib/spawn.js:37:17)
+    at ChildProcess.<anonymous> (/Users/weiqian/Desktop/xxxxx/hexo/node_modules/hexo-util/lib/spawn.js:37:17)
     at ChildProcess.emit (events.js:182:13)
     at maybeClose (internal/child_process.js:947:16)
     at Process.ChildProcess._handle.onexit (internal/child_process.js:236:5)

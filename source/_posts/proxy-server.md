@@ -14,7 +14,7 @@ tags:
 const cid = process.env.COUNTRY || 'id'
 const env = process.env.ENV || 'test'
 if (!process.env.HOST) {
-  process.env.HOST = `dp.${env}.shopee.co.${cid}`
+  process.env.HOST = `dp.${env}.xxxxx.co.${cid}`
 }
 console.log(process)
 // Do this as the first thing so that any code reading it knows the right env.

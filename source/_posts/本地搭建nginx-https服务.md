@@ -71,7 +71,7 @@ If you enter '.', the field will be left blank.
 Country Name (2 letter code) []:cn
 State or Province Name (full name) []:shenzhen
 Locality Name (eg, city) []:shenzhen
-Organization Name (eg, company) []:shopee
+Organization Name (eg, company) []:xxxxx
 Organizational Unit Name (eg, section) []:dp
 Common Name (eg, fully qualified host name) []:www.example.com
 Email Address []:
@@ -98,7 +98,7 @@ Country Name (2 letter code) []:cn
 State or Province Name (full name) []:shenzhen
 Locality Name (eg, city) []:shenzhen
 # testoid2=${testoid1}.5.6
-Organization Name (eg, company) []:shopee
+Organization Name (eg, company) []:xxxxx
 Organizational Unit Name (eg, section) []:dp
 Common Name (eg, fully qualified host name) []:www.example.com
 Email Address []:
@@ -132,7 +132,7 @@ Certificate Details:
             countryName               = cn
             stateOrProvinceName       = shenzhen
             localityName              = shenzhen
-            organizationName          = shopee
+            organizationName          = xxxxx
             organizationalUnitName    = dp
             commonName                = www.example.com
         X509v3 extensions:
@@ -143,7 +143,7 @@ Certificate Details:
             X509v3 Subject Key Identifier:
                 F1:2E:2B:F6:C9:8E:3F:34:B9:A7:B8:96:45:92:21:47:35:54:F2:84
             X509v3 Authority Key Identifier:
-                DirName:/C=cn/ST=shenzhen/L=shenzhen/O=shopee/OU=dp/CN=www.example.com
+                DirName:/C=cn/ST=shenzhen/L=shenzhen/O=xxxxx/OU=dp/CN=www.example.com
                 serial:F8:D7:C0:D0:73:1E:B4:91
 
 Certificate is to be certified until Oct  9 15:32:09 2022 GMT (1460 days)

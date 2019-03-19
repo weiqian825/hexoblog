@@ -12,7 +12,7 @@ tags:
 1. 执行命令 hexo new page categories
 ```
 ➜  hexo git:(master) hexo new page categories
-INFO  Created: ~/Desktop/shopee/hexo/source/categories/index.md
+INFO  Created: ~/Desktop/xxxxx/hexo/source/categories/index.md
 ➜  hexo git:(master) ✗ cat source/categories/index.md
 ---
 title: categories
@@ -46,7 +46,7 @@ menu:
 1. 执行命令 hexo new page tags
 ```
 ➜  hexo git:(master) ✗ hexo new page tags
-INFO  Created: ~/Desktop/shopee/hexo/source/tags/index.md
+INFO  Created: ~/Desktop/xxxxx/hexo/source/tags/index.md
 ➜  hexo git:(master) ✗ cat  source/tags/index.md
 ---
 title: tags

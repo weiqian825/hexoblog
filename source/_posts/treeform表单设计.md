@@ -180,7 +180,7 @@ tags:
     }]
   }
 ```
-4. [notice demo访问地址](dp-admin.test.shopee.io/id/notice/detail/1)
+4. [notice demo访问地址](dp-admin.test.xxxxx.io/id/notice/detail/1)
 
 ## 二、实现思路
 

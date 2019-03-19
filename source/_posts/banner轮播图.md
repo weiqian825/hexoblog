@@ -2,7 +2,7 @@
 title: banner轮播图
 date: 2018-10-22 22:01:15
 categories: 
-- shopee
+- xxxxx
 tags:
 - banner
 - componets
