@@ -224,3 +224,28 @@ git cherry-pick xxxxx
    git add xxx
    git commit xxx 
    ```
+7. 更改git提交记录的author和email[方法](   https://help.github.com/en/articles/changing-author-info)
+
+   执行脚本
+   ```
+    #!/bin/sh
+
+    git filter-branch --env-filter '
+    
+    OLD_EMAIL="qian.wei@shopee.com"
+    CORRECT_NAME="weiqian93"
+    CORRECT_EMAIL="540518665@qq.com"
+    
+    if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
+    then
+        export GIT_COMMITTER_NAME="$CORRECT_NAME"
+        export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
+    fi
+    if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
+    then
+        export GIT_AUTHOR_NAME="$CORRECT_NAME"
+        export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
+    fi
+    ' --tag-name-filter cat -- --branches --tags
+    ```
+    git push --force --tags origin 'refs/heads/*'
