@@ -59,7 +59,7 @@ and the repository exists.
 // 也是为了下次同步最新的Next主题，故才有多地同步是更新Next主题方案。
 // 解决方案：直接获取/更新Next主题
 cd your-hexo-site
-git clone https://github.com/iissnan/hexo-theme-next themes/next
+git clone https://github.com/theme-next/hexo-theme-next themes/next
 ```
 4. 又出现了git@github.com: Permission denied (publickey)，莫非这里的publickey的会过期，过一段就要添加一下？ssh-add ~/.ssh/id_rsa_hexo
 ``` 
