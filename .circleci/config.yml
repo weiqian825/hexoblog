@@ -6,14 +6,14 @@ jobs:
     steps:
       - checkout
       - run: echo "==================== start build =============================="
-      - run: mkdir -p myWorkspace
-      - run: echo "Trying out workspaces" > myWorkspace/echo-output
+      - run: mkdir -p myhexo
+      - run: echo "Trying out workspaces" > myhexo/echo-output
       - persist_to_workspace:
-        # Must be an absolute path, or relative path from working_directory
-        root: myWorkspace
+        # Must be an absolute path, or relative path from myhexo
+        root: myhexo
         # Must be relative path from root
         paths:
-          - echo-output 
+          - echo-output myhexo
       - run:
           command: |
             git clone https://github.com/theme-next/hexo-theme-next themes/next
