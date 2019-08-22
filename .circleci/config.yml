@@ -29,10 +29,6 @@ jobs:
           key: dependencies-{{ checksum "package.json" }}
       - run:
           command: |
-            git config --global user.email "540518665@qq.com"
-            git config --global user.name "weiqian93"
-      - run:
-          command: |
             yarn build
             yarn deploy
       - run: echo "==================== end build =============================="
