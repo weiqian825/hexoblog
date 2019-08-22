@@ -3,10 +3,17 @@ jobs:
   build:
     docker:
       - image: circleci/node:8
-    working_directory: /Users/weiqian/Desktop/hexoblog
     steps:
-      - run: echo "==================== start build =============================="
       - checkout
+      - run: echo "==================== start build =============================="
+      - run: mkdir -p my_workspace
+      - run: echo "Trying out workspaces" > my_workspace/echo-output
+      - persist_to_workspace:
+          # Must be an absolute path, or relative path from working_directory
+          root: my_workspace
+          # Must be relative path from root
+          paths:
+            - echo-output 
       - run:
           command: |
             git clone https://github.com/theme-next/hexo-theme-next themes/next
