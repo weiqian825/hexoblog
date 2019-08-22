@@ -6,14 +6,14 @@ jobs:
     steps:
       - checkout
       - run: echo "==================== start build =============================="
-      - run: mkdir -p my_workspace
-      - run: echo "Trying out workspaces" > my_workspace/echo-output
+      - run: mkdir -p myWorkspace
+      - run: echo "Trying out workspaces" > myWorkspace/echo-output
       - persist_to_workspace:
-          # Must be an absolute path, or relative path from working_directory
-          root: my_workspace
-          # Must be relative path from root
-          paths:
-            - echo-output 
+        # Must be an absolute path, or relative path from working_directory
+        root: myWorkspace
+        # Must be relative path from root
+        paths:
+          - echo-output 
       - run:
           command: |
             git clone https://github.com/theme-next/hexo-theme-next themes/next
@@ -27,6 +27,10 @@ jobs:
           paths:
             - node_modules
           key: dependencies-{{ checksum "package.json" }}
+      - run:
+          command: |
+            git config --global user.email "540518665@qq.com"
+            git config --global user.name "weiqian93"
       - run:
           command: |
             yarn build
