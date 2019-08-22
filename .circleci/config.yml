@@ -1,0 +1,40 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8
+    working_directory: /Users/weiqian/Desktop/hexoblog
+    steps:
+      - run: echo "==================== start build =============================="
+      - checkout
+      - run:
+          command: |
+            git clone https://github.com/theme-next/hexo-theme-next themes/next
+      - restore_cache:
+          keys:
+          - dependencies-{{ checksum "package.json" }}
+          - dependencies-
+      - run:
+          command: yarn
+      - save_cache:
+          paths:
+            - node_modules
+          key: dependencies-{{ checksum "package.json" }}
+      - run:
+          command: |
+            yarn build
+            yarn deploy
+      - run: echo "==================== end build =============================="
+
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master

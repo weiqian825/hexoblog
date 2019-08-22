@@ -6,7 +6,9 @@
     "version": "3.8.0"
   },
   "scripts": {
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "build": "hexo generate",
+    "deploy": "hexo deploy"
   },
   "dependencies": {
     "git-cz": "^2.0.0",
