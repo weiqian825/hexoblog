@@ -6,8 +6,8 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "6b:21:60:ae:00:88:db:1b:b3:ac:65:f1:82:b6:79:ff"
-      - run: *checkout-shallow
+            - "a3:96:0b:28:01:aa:9c:4a:a3:3b:84:bd:d6:d7:02:42"
+      - checkout
       - run: echo "==================== start build =============================="
       - run: mkdir -p my_workspace
       - run: echo "Trying out workspaces" > my_workspace/echo-output
