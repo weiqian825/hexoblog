@@ -64,7 +64,8 @@ workflows:
             branches:
               only: master
 ```
-2. [添加sshkey](https://circleci.com/docs/2.0/add-ssh-key/)
+2. 在github里面添加新的[tokens](https://github.com/settings/tokens),把所有权限都勾选上 
+3. [添加sshkey](https://circleci.com/docs/2.0/add-ssh-key/)
    
 ```
 1. generate the key with ssh-keygen -m PEM -t rsa -C "your_email@example.com"
@@ -74,13 +75,13 @@ workflows:
 3. https://github.com/[username]/[project]/settings/keys 添加刚才生产的xxx.pub
 记得勾选写权限
 ```
-3. 在config.yml里面添加
+4. 在config.yml里面添加
 ```
 - add_ssh_keys:
         fingerprints:
           - "65:91:8d:7d:61:20:56:02:37:20:72:fb:7d:d5:4e:49"
 ```
-4. 设置checkout ssh key
+5. 设置checkout ssh key
 ```
 在https://circleci.com/gh/[username]/[project]/edit#checkout 
 add Deploy key and user key
