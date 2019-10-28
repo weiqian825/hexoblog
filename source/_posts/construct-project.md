@@ -10,6 +10,7 @@ tags:
 ## 前言
 入坑react3个月，记录下一个react项目如何从头搭建
 
+
 ## 一、使用create-react-app搭建步骤
 1. 为了快速学习和方便开发，跳过项目配置和安装的繁琐步骤，我们这里选择了react官方推荐的[create-react-app](https://github.com/facebook/create-react-app)生成项目框架。
 ```
@@ -70,4 +71,14 @@ npm run eject
 [eslint]     |   husky standardjs
 [pretty]     |   ora chalk
 ```
+
    
+
+## 拓展CRA的webpack配置
+[相关资料](https://juejin.im/post/5a5d5b815188257327399962)
+大体上有4种方法
+[项目 eject]()
+[替换 react-scripts 包](https://auth0.com/blog/how-to-configure-create-react-app/#Test-Your-Custom-Script)
+[使用 react-app-rewired]()
+[scripts 包 + override 组合]()
+
