@@ -309,4 +309,79 @@ tsconfig
 编写声明文件(umd global lib及插件(模块全局))
 
 ```
+## 八、tsconfig
+```
+1. 与文件相关的选项
+files: ['./src/a.ts']//编译器需要编译的文件列表
+include: ['src'] //编辑器要编辑的目录，支持通配符
+exclude: []//编译器需要排除的文件夹
+
+extends: './tsconfig.base' //继承配置
+compileOnSave: true //vscode暂时不支持
+2. 与编译相关的选项
+compilerOptions: {
+  incremental: true, //增量编译
+  tsBuildInfoFile: //增量编译文件的存储位置
+  diagnostics: 打印诊断信息
+
+  target: //目标语言版本
+  module: //生成代码的模块标准
+  outFile: //将多个相互以来的文件生成一个文件，可以使用在AMD模块中
+
+  lib: //ts需要引入的库，即声明信息
+  allowJs: //允许先变异JS文件（.js, jsx）
+  checkJs //允许在JS文件中报错，通常与allowJS一起使用
+  outDir: //指定输出目录
+  rootDir: //指定输入文件目录
+
+  declaration //自动生成声明文件
+  declarationDir //声明文件的路径
+  emitDeclarationOnly //只生成声明文件
+  sourceMap://生成目标文件的sourceMap
+  inlineSourceMap: //生成目标文件的inlineSourceMap
+  declarationMap: //生成目标文件的sourceMap
+  typeRoots //生命文件的目录，例如默认 node_modules/@types
+  types //需要加载的声明的文件包
+  removeComments //删除注释
+  noEmit //不输出文件
+  noEmitOnError //发生错误时候不输出文件
+  removeComments //删除注释
+  downlevelIteration //降级遍历器的生成
+  noEmitHelpers //不生成helper函数，需要额为安装ts-helpers
+  importantHelper 通过tslib引入help函数， 文件必须是模块
+  strict //开启严格模式
+  alwaysStrict //
+  noImplicitAny //不允许any类型
+  strictNullChecks //不允许把null undefined赋值给其他变量类型
+  strictFunctionTypes //不允许函数的双向协变
+  strictPropertyInitalization 类的实例必须初始化
+  strictBindCallApply 严格的bind/call/apply检查
+  noImplicitThis 不允许this有隐式的any类型
+
+  noUnusedLoacls 检查之生命，未使用的局部变量
+  noUnusedParameters 检查未使用的函数参数
+  noFallthroughCasesInSwitch 防止switch语句贯穿
+  noImplicitReturns //每个分支都要又返回值
+  esModuleInterop //允许export = 导出， 由important from 导入
+  allowUmdGlobalAccess //允许在模块中访问UMD全局变量
+  moduleResolution //模块解析策略
+  baseUrl //解析非相对模块的基地址
+  paths: {
+      jquery: []
+  }
+  rootDirs //将多个目录放在一个虚拟目录下，用于运行时
+  listEmittedFiles //打印输出的文件
+  listFiles //打印编译的文件
+}
+3. 工程引用
+
+```
+## 九、编译工具
+```
+1. 编译工具: ts-loader awesome-typescript-loader
+2. 代码检查工具： eslint
+typescript=> 类型检查+语言转换
+3. jest单元测试
+```
+
 
