@@ -9,9 +9,9 @@ tags:
 
 admin项目的nginx配置需要更改的时候，怎么样验证配置是否ok呢？
 
-## 一、nginx常用命令
+### 一、nginx常用命令
 
-```
+```sh
 // 1. start
 nginx
 // 2. 停止nginx
@@ -47,10 +47,10 @@ lsof -i :8080
 lsof -i :端口号| grep LISTEN | awk '{ print $2; }' | head -n 2 | grep -v PID
 ```
 
-## 二、更改的配置文件
+### 二、更改的配置文件
 
 1. 更改前，有hub的配置
-```
+```nginx
 # envs: ["test", "uat", "staging", "live"]
 # cids: ["id", "th"]
 
@@ -148,10 +148,9 @@ server {
 }
 
 {% endif %}
-
 ```
 2. 更改后，去掉hub的配置
-```
+```nginx
 # envs: ["test", "uat", "staging", "live"]
 # cids: ["id", "th"]
 
@@ -241,12 +240,11 @@ server {
 }
 
 {% endif %}
-
 ```
-## 三、本地验证nginx配置是否正确
+### 三、本地验证nginx配置是否正确
 
 在项目的deploy文件下，新建 nginx.conf，内容如下
-```
+```nginx
 user  root staff;
 worker_processes  1;
 
@@ -279,26 +277,23 @@ http {
         try_files     $uri       /index.html;
     }
     ## End of admin ##
-
   }
 }
-
 ```
 执行如下脚本
-```
+```sh
 Windrunner git:(feature-ui) lsof -i :8080
 ➜  Windrunner git:(feature-ui) nginx -c /Users/weiqian/Desktop/xxxxx/Windrunner/deploy/nginx.conf
 ➜  Windrunner git:(feature-ui) nginx -t
 nginx: the configuration file /usr/local/etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /usr/local/etc/nginx/nginx.conf test is successful
-
 ```
 放问网页 http://localhost:8080 可以正常访问，也就是说我们本地的配置是ok的。
 
-## 四、线上访问验证
+### 四、线上访问验证
 
 线上访问页面还是出错，js路径不对，那么就是说打包出来的静态文件可能不对，查看jenkins的日志报错如下
-```
+```sh
 > node scripts/build.js
 
 { Error: Command failed: npm run oldbuild
@@ -323,14 +318,14 @@ TypeError: Invalid data, chunk must be a string or buffer, not undefined
     at tryModuleLoad (module.js:497:12)
 ```
 线上有报错，最后显示build成功了，如果是这样，我们本地的build会不会也有问题，验证了下ok
-```
+```sh
 rm -rf node_modules
 rm -rf build
 npm i
 npm run build
 ```
 报错如下
-```
+```sh
 > ant-design-pro@1.3.0 build /Users/weiqian/Desktop/xxxxx/Windrunner
 > node scripts/build.js
 
@@ -374,21 +369,21 @@ npm ERR!     /Users/weiqian/.npm/_logs/2018-09-07T10_31_10_452Z-debug.log
     at Pipe._handle.close [as _onclose] (net.js:598:12) killed: false, code: 1, signal: null, cmd: 'npm run oldbuild' }
 ```
 npm的package.json配置
-```
+```json
 "scripts": {
     "oldbuild": "cross-env DISABLE_ESLINT=none roadhog build",
     "build": "node scripts/build.js"
 }
 ```
 更改配置如下
-```
+```json
 "scripts": {
     "oldbuild": "cross-env ESLINT=none roadhog build",
     "build": "node scripts/build.js"
 }
 ```
 编译如下成功
-```
+```sh
 ➜  Windrunner git:(feature-ui) ✗ npm run build
 
 > ant-design-pro@1.3.0 build /Users/weiqian/Desktop/xxxxx/Windrunner
@@ -410,9 +405,9 @@ Successful!
 ```
 本地build成功了，我们放到了jenkins试了下果然编译成功了，访问线上页面是ok的。
 
-## 五、其他案例记录
+### 五、其他案例记录
 把域名 https://dp-admin.test.xxxxx.io/ 换成 https://dp-admin.test.xxxxx.io/id
-```
+```nginx
 user  root staff;
 worker_processes  1;
 
@@ -459,7 +454,7 @@ http {
 
 执行代码 
 
-```
+```sh
 ➜  Windrunner git:(test) lsof -i :8080
 COMMAND     PID    USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
 Google    23206 weiqian  149u  IPv4 0xd18ff623edf3bb69      0t0  TCP localhost:59974->localhost:http-alt (ESTABLISHED)
@@ -474,7 +469,7 @@ nginx: [warn] the "user" directive makes sense only if the master process runs w
 nginx: [emerg] open() "/Users/weiqian/Desktop/xxxxx/Windrunner/deploy/gzip_params" failed (2: No such file or directory) in /Users/weiqian/Desktop/xxxxx/Windrunner/deploy/nginx.conf:38
 ```
 emerg报错gzip_params改正下nginx配置，屏蔽掉gzip_params
-```
+```nginx
  location = /index.html {
         alias                 /Users/weiqian/Desktop/xxxxx/Windrunner/build/windrunner/index.html;
         expires               -1;
@@ -483,7 +478,7 @@ emerg报错gzip_params改正下nginx配置，屏蔽掉gzip_params
     }
 ```
 重新起下服务试试
-```
+```sh
 ➜  Windrunner git:(test) nginx -s stop
 nginx: [alert] kill(35357, 15) failed (3: No such process)
 ➜  Windrunner git:(test) nginx -c /Users/weiqian/Desktop/xxxxx/Windrunner/deploy/nginx.conf

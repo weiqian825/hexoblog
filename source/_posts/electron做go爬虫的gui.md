@@ -9,9 +9,9 @@ tags:
 - gui
 ---
 一期要做的事情很简单，用electron给一个GO爬虫脚本做一个前端的GUI，顺便学习下[electron](https://electronjs.org/)
-## 一、运行go爬虫
+### 一、运行go爬虫
 [go爬虫](https://github.com/weiqian93/jira-auto/tree/master)先要简单配置下[go](https://golang.org/)的环境
-```
+```js
 // 1. install go
 brew install go -g
 // 2. config gopath
@@ -33,11 +33,11 @@ go run main.go
 
 ```
 
-## 二、eletron 部分
+### 二、eletron 部分
 
 1. electron由一个主进程和若干个渲染进程组成，主进程和渲染进程通信用ipcMain，在调试或者在功能开发的时候这个太需要了
 
-```
+```sh
 // 主进程的调试信息
 //开发时候打印的日志可以在bash里面看到。
 //打包成可执行程序之后，可以打开jira-auto.app/Contents/MacOS/jira-auto，同样可以看到
@@ -67,7 +67,7 @@ ipcRenderer.on('exec:querybtn', function (e, tips, error, stdout, stderr) {
 ```
 2. electron里面如何调用go脚本？ go程序提供的是cli接口，不是http接口。查询相关资料后，分别尝试了shelljs和node.js里面child_process模块的spawn方法。
 
-```
+```sh
 
 // method 1: try use shelljs ---error
 ipcMain.on('shelljs:querybtn', function (e, command) {
@@ -115,7 +115,7 @@ ipcMain.on('spawn:querybtn', function (e, command) {
 
 ```
 3. 经过1，2小问题的解决后，开心的准备打包  electron-packager
-```  
+```  json
   "scripts": {
        "start": "electron main.js", // 不要用node main.js electron里面的app等会找不到
        "test": "echo \"Error: no test specified\" && exit 1",
@@ -126,25 +126,25 @@ ipcMain.on('spawn:querybtn', function (e, command) {
 npm run pack 打包成功了，个性化配置有很多参数可以查询，运行程序发现一直报错并不能运行。
 4. 查看文件有没有被打包进去，右击exe=>Show Package Content=>Contents=>Resources=>app=>。。。。可以看见整个工程目录被打包进去了
 5. 打印日志，发现报错是一直找不到go文件，也就是electron的部分执行了，go的部分不能正常运行
-``` 
+``` go
 _process = spawn('go',['run','main.go','--cookie="xxxx"'])
-``` 
+```
 6. 目前的go是源码呈现的，并没有被编译成可执行文件，这样就会依赖gopath的环境，让go脱离gopath环境的以来，需要把go编译成可以执行文件，go build 之后command部分变成 ./xxx 
-```  
+```  go
 _process = spawn('./main',['--cookie="xxxx"'])
 _process.stdout.on('data',function(data){
     console.log(data.toString())
 })
 ```
 7. Show Package Content显示go可执行文件已经被打包进去了，然而报错路径找不到，猜想是相对路径的问题，添加__dirname
- ```  
+ ```  go
 _process = spawn(path.resolve(__dirname)+'/'+'./main',['--cookie="xxxx"'])
 _process.stdout.on('data',function(data){
     console.log(data.toString())
 })
-```
+ ```
 8. 函数是可以正常执行了，又报错open data.csv permission denied，先试试选择没有权限要求的文件去写文件，例如desktop
-```
+```go
     import (
         "os/user"
     )
@@ -156,7 +156,7 @@ _process.stdout.on('data',function(data){
     desktop := homedir + "/Desktop/data.csv"
 ```
 9. 在体验输入账户时候，发现macos的input部分不能粘贴等操作，解决如下
-```
+```js
 if (process.platform === 'darwin') {
   mainMenuTemplate.unshift({
     label: 'Edit',
@@ -184,12 +184,12 @@ if (process.platform === 'darwin') {
 
 ```
 
-三、目录结构调整
+### 三、目录结构调整
 
 1. spider放一起
 2. client放一起
 3. build写好脚本后，chmod 755 xxx.sh
-```
+```js
    // build_spider.sh
    cd ./client && npm install && npm run pack 
    // build_client.sh
@@ -199,6 +199,6 @@ if (process.platform === 'darwin') {
 ```
 
   
-   
+
 
 

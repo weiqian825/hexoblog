@@ -13,8 +13,8 @@ tags:
 背景参考[ant-pro 替换roadhog为webpack](https://weiqian93.github.io/2018/11/16/ant-pro-%E6%9B%BF%E6%8D%A2roadhog%E4%B8%BAwebpack/)
 
 
-## 一、替换步骤概览（what）
-```
+### 一、替换步骤概览（what）
+```javascript
 1. 添加meepjs相关loader webpack配置
 2. 新建apis文件配置yml文件，删除service/api模块
 3. 新建store|reducer模块、删除model模块
@@ -26,23 +26,23 @@ tags:
 9. 新增mock、i18n（这2个模块作用现在不是很大，为了后面提取更完善的框架，先把这些标配的东西放进去）
 ```
 
-## 二、为什么要做替换呢(why)
-```
+### 二、为什么要做替换呢(why)
+```javascript
 1. dva的框架和现在有sniper的框架有一些差距，很容易走到一个人的小圈子，不够开放，不能及时更新同步新的东西
 2. 代码的可读性没有sniper高，sniper模块就很繁琐强迫证一样，但也使的代码的可读性更好
 3. 我们做自己的脚手架，从打包到ui最终都尽量用自己的东西，更好掌控一些，这样就一定要去掉这些别人家的轮子，做自家轮子
 4. 把这些模块慢慢替换掉后，就可以慢慢打磨代码，从线上代码很快提取手架的，相互磨合改造的一个过程。
 ```
-## 三、首次迁移的遗留问题
-```
+### 三、首次迁移的遗留问题
+```javascript
 1. reducer的模块多繁琐，代码都差不多，如何精简
 2. 关于数据的处理，有时候时在action 有时候时在saga，这里有没有更好的规范
-3. 各个组件之间的loading和全局的loading组织关系，怎么优雅组织代码 
+3. 各个组件之间的loading和全局的loading组织关系，怎么优雅组织代码
 ```
 
-## 四、dva替换部分具体细节
+### 四、dva替换部分具体细节
 1. 添加meepjs相关loader webpack配置 
-```
+```javascript
  // webpack.base.conf.js
  module: {
     noParse: [/\.min\.js$/],
@@ -58,7 +58,7 @@ tags:
 ```
 2. 新建apis文件配置yml文件，删除service/api模块
 src/apis/banner.yml
-```
+```javascript
 apis:
   fetchBannerGroup:
     url: /api/banner/group
@@ -82,7 +82,7 @@ config:
   meta:
 ```
 src/apis/index.js
-```
+```javascript
 import './init.js'
 import { registerApi } from 'meepojs'
 import bannerApiConf from './banner.yml'
@@ -104,7 +104,7 @@ export const bannerApi = registerApis(bannerApiConf)
 
 ```
 src/apis/init.js
-```
+```javascript
 import { notification } from 'antd'
 import { accountLogin } from '@utils/authority'
 import { clearLoginSession } from '@helper/login'
@@ -149,7 +149,7 @@ onApiError(({ body, status, apiConfig }) => {
 })
 ```
 src/utils/momoize.js
-```
+```javascript
 export const hashObj = obj =>
   obj ? Object.keys(obj).map(key => `${key}=${obj[key]}`).join('&')
     : ''
@@ -194,7 +194,7 @@ export const memoizeAsync = (func, keyCreator = hashObj) => {
 ```
 3. 新建store|reducer模块、删除model模块
 src/store.js
-```
+```javascript
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import createHistory from 'history/createBrowserHistory'
 import createSagaMiddleware from 'redux-saga'
@@ -219,7 +219,7 @@ export default store
 
 ```
 src/reducer/banner/fetch.js
-```
+```javascript
 import { createActions } from 'redux-actions'
 import { takeLatest, call, put } from 'redux-saga/effects'
 import { bannerApi } from '@apis/index.js'
@@ -327,7 +327,7 @@ export default {
 
 ```
 src/reducer/banner/index.js
-```
+```javascript
 import { handleActions } from 'redux-actions'
 import fetchReducer, { watchFetch } from './fetch'
 
@@ -339,7 +339,7 @@ export default handleActions(fetchReducer, {})
 ```
 4. 新建页面Loadable加载、删除dva/dynamic的创建方式
 src/index.js
-```
+```javascript
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
@@ -367,7 +367,7 @@ ReactDOM.render(
 
 ```
 src/layout/BasicLayout.js
-```
+```javascript
 import React from 'react'
 import { Layout } from 'antd'
 import { Route, Redirect, Switch } from 'dva/router'
@@ -472,7 +472,7 @@ class BasicLayout extends React.PureComponent {
 export default BasicLayout
 ```
 5. page里面引入react-redux的connent、删除dva的connect
-```
+```javascript
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'

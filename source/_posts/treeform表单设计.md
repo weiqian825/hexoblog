@@ -8,10 +8,10 @@ tags:
 - treeform
 ---
 
-## 一、用法示例
+### 一、用法示例
 
 1. 组件调用方式
-```
+```js
   Props     | Type         | use
   --------- | ------------ | ---------  
   treeData  | object|array | 业务数据来源
@@ -31,7 +31,7 @@ tags:
 2. const/notice业务的schema，主要设计的式表单相关
 此处的设计遵循 [JSON schema](http://json-schema.org/)
 有2个作用 A.自动生成表单  B.利用jsonschema校验基础类型
-```
+```js
 
   showField  | Type    | use
   ---------- | ------- | -----------------------------------------------  
@@ -142,7 +142,7 @@ tags:
   }
 ```
 3. notice的treeData数据
-```
+```js
   showField  | Type                | use
   ---------- | ------------------- | ----------------------------------------  
   id         | string              | 必填，节点的唯一标识 
@@ -182,11 +182,11 @@ tags:
 ```
 4. [notice demo访问地址](dp-admin.test.xxxxx.io/id/notice/detail/1)
 
-## 二、实现思路
+### 二、实现思路
 
 [实现思路流程图](https://www.processon.com/view/link/5c47069ae4b03334b50c3f34)
 
-## 三、待优化部分
+### 三、待优化部分
 
 1. id和name的设计
 2. 数据同步问题

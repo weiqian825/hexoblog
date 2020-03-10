@@ -8,12 +8,12 @@ tags:
 - build
 ---
 
-## 前言
+### 前言
 
    项目中内置的打包编译工具在build之后生成的目录是build/dist且不支持更改配置目录，实际同一个域名挂载了不止一个项目，由于ngnix配置需要，我们期望编译后目录是build/windrunner/static/，那么如何解决这个问题呢？ 最简单的常规方法就是我们自己写操作文件脚本，下面将介绍如何通过[NODEJS](http://nodejs.cn/api/)文件操作将build的文件目录变成我们期望的。
 
 ### 解决方案
-```
+```json
 // package.json的配置
 {
   "scripts": {
@@ -22,7 +22,7 @@ tags:
   }
 }
 ```
-```
+```javascript
     //child_process 模块提供了衍生子进程的功能，衍生一个 shell 并在 shell 上运行命令，当完成时会传入 stdout 和 stderr 到回调函数。
     const exec = require('child_process').exec
     //fs 模块提供了一些 API，用于以一种类似标准 POSIX 函数的方式与文件系统进行交互。
@@ -78,7 +78,7 @@ tags:
     })
 ```
 部分日志打印的结果
-```
+```html
 {"entry":"src/index.js","extraBabelPlugins":[["import",{"libraryName":"antd","libraryDirectory":"es","style":true}]],"env":{"development":{"extraBabelPlugins":["dva-hmr"]}},"alias":{"components":"/Users/weiqian/Desktop/Windrunner/src/components","react-native":"react-native-web","@src":"/Users/weiqian/Desktop/Windrunner/src","@const":"/Users/weiqian/Desktop/Windrunner/src/constants","@utils":"/Users/weiqian/Desktop/Windrunner/src/utils","@selector":"/Users/weiqian/Desktop/Windrunner/src/selectors","@services":"/Users/weiqian/Desktop/Windrunner/src/services","@layouts":"/Users/weiqian/Desktop/Windrunner/src/layouts","@api":"/Users/weiqian/Desktop/Windrunner/src/apis"},"disableDynamicImport":true,"ignoreMomentLocale":true,"html":{"template":"./src/index.ejs"},"outputPath":"./build/windrunner","publicPath":"/digital-purchase/static","hash":true,"proxy":{"/api":{"target":"http://localhost:3003"},"/local_api":{"target":"http://localhost:3003"},"staticPublicUrl":"/static"}}
 appPath /Users/weiqian/Desktop/Windrunner
 buildPath /Users/weiqian/Desktop/Windrunner/build/windrunner
@@ -124,3 +124,4 @@ indexFile after <!DOCTYPE html>
 
 </html>
 ```
+

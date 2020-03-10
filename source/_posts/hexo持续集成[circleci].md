@@ -4,13 +4,13 @@ date: 2019-08-23 18:22:43
 tags:
 ---
 
-## 一、相关文档
+### 一、相关文档
 1. [circleci官网](https://circleci.com)
 2. [github](https://github.com)
 
-## 二、配置
+### 二、配置
 1. hexo的配置文件
-```
+```deploy
 version: 2
 jobs:
   build:
@@ -67,24 +67,24 @@ workflows:
 2. 在github里面添加新的[tokens](https://github.com/settings/tokens),把所有权限都勾选上 
 3. [添加sshkey](https://circleci.com/docs/2.0/add-ssh-key/)
    
-```
+```js
 1. generate the key with ssh-keygen -m PEM -t rsa -C "your_email@example.com"
 
-2.https://circleci.com/gh/[username]/[project]/edit#ssh.添加刚才生产的ssh-keygen xxx
+2.https://circleci.com/gh/[username]/[project]/edit#ssh.添加刚才生产的ssh-keygen xxx
 
-3. https://github.com/[username]/[project]/settings/keys 添加刚才生产的xxx.pub
+3. https://github.com/[username]/[project]/settings/keys 添加刚才生产的xxx.pub
 记得勾选写权限
 ```
 4. 在config.yml里面添加
-```
+```js
 - add_ssh_keys:
         fingerprints:
           - "65:91:8d:7d:61:20:56:02:37:20:72:fb:7d:d5:4e:49"
 ```
 5. 设置checkout ssh key
-```
-在https://circleci.com/gh/[username]/[project]/edit#checkout 
-add Deploy key and user key
+```js
+在https://circleci.com/gh/[username]/[project]/edit#checkout 
+add Deploy key and user key
 ```
 
-## 三、原理
+### 三、原理

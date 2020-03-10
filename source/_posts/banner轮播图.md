@@ -7,9 +7,9 @@ tags:
 - banner
 - componets
 ---
-## 一、banner ui部分
+### 一、banner ui部分
 1. UI部分BannerItem和BannerDots banerItem.js
-```
+```react
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import style from './style.scss'
@@ -44,7 +44,7 @@ export class BannerDots extends Component {
 
 ```
 2. scss
-```
+```css
 *{
   margin: 0;
   padding: 0;
@@ -90,9 +90,9 @@ export class BannerDots extends Component {
   }
 }
 ```
-## 二、banner 轮播部分逻辑
+### 二、banner 轮播部分逻辑
 1. Banner.js
-```
+```react
 import React, { Component } from 'react'
 import { BannerItem, BannerDots } from './BannerItem'
 import style from './style.scss'
@@ -233,9 +233,9 @@ Banner.defaultProps = {
 Banner.autoPlayFlag = null
 
 ```
-## 三、banner 数据请求逻辑部分
+### 三、banner 数据请求逻辑部分
 1. index.js
-```
+```react
 import React, { Component } from 'react'
 import { bannerApi } from '@api/index.js'
 import Banner from './Banner.js'
@@ -282,8 +282,8 @@ class ShowBanner extends Component {
 export default ShowBanner
 
 ```
-## 四、调用demo
-```
+### 四、调用demo
+```react
 import React from 'react'
 import ReactDom from 'react-dom'
 import style from './index.scss'

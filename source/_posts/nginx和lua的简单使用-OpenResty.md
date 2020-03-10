@@ -10,10 +10,10 @@ tags:
 ---
 [OpenResty](https://openresty.org/cn/) 是一款基于 NGINX 和 LuaJIT 的 Web 平台
 
-## 一、安装环境
+### 一、安装环境
 1. 根据官网教程，macos我们只需要一行命令就可以开心的安装openresty (brew install openresty/brew/openresty)
 
-```
+```sh
 ➜  sshkey brew untap homebrew/nginx
 Error: No available tap homebrew/nginx.
 ➜  sshkey brew install openresty/brew/openresty
@@ -198,7 +198,7 @@ nginx: [error] invalid PID number "" in "/usr/local/var/run/openresty.pid"
 ➜  sshkey sudo  nginx  -c  /Users/weiqian/sshkey/nginx-https.conf
 ```
 测试的nginx文件配置
-```
+```nginx
 user root owner;
 worker_processes 1;
 events {
@@ -241,9 +241,9 @@ http{
 ```
 访问http://www.example.com/test-lua页面显示hello world说明我们lua环境配置正确可以，开始编写lua脚本了
 
-## 二、lua脚本配置关闭http链接，所有链接跳转到https
+### 二、lua脚本配置关闭http链接，所有链接跳转到https
 1. lua的nginx模块具体代码如下
-```
+```nginx
 access_by_lua_block {
     if ngx.var.scheme == 'http' then
         return ngx.redirect("https://" .. ngx.var.host .. ngx.var.request_uri)
@@ -251,7 +251,7 @@ access_by_lua_block {
 }
 ```
 2. 修改后的本地测试实栗
-```
+```nginx
 user root owner;
 
 worker_processes 1;
@@ -302,7 +302,7 @@ http{
 3. 存在问题，我们刚才的配置将所有的域名都转到了https实际上我们只想改自己配置，不要影响别人的业务
 向location = /digital-product/m/index.html添加链接即可
 
-```
+```nginx
 user root owner;
 
 worker_processes 1;
@@ -352,9 +352,9 @@ http{
   } 
 }
 ```
-## 三、lua脚本配置关闭http链接，所有链接跳转到https
+### 三、lua脚本配置关闭http链接，所有链接跳转到https
 在test和uat环境部署了配置之后都没有问题，live环境居然不生效， http://xxxxx.co.id/produk-digital/m/?debug=1 链接并没有跳转到https
-```
+```sh
 ➜  ~ dig xxxxx.co.id
 
 ; <<>> DiG 9.10.6 <<>> xxxxx.co.id

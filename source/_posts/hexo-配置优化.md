@@ -7,10 +7,10 @@ tags:
 - hexo
 ---
 
-## 一、添加categories
+### 一、添加categories
 
 1. 执行命令 hexo new page categories
-```
+```sh
 ➜  hexo git:(master) hexo new page categories
 INFO  Created: ~/Desktop/xxxxx/hexo/source/categories/index.md
 ➜  hexo git:(master) ✗ cat source/categories/index.md
@@ -22,14 +22,14 @@ type: "categories"
 
 ```
 2. 具体文章添加categories
-```
+```sh
 title: hexo 添加categories和tags
 date: 2018-10-11 16:19:26
 categories: 
 - tools
 ```
 3. 修改themes/next/_config.yml里面的配置，去掉categories的屏蔽
-```
+```sj
 menu:
   home: / || home
   #about: /about/ || user
@@ -41,7 +41,7 @@ menu:
   #commonweal: /404/ || heartbeat
 ```
 
-## 二、添加tags 
+### 二、添加tags 
 
 1. 执行命令 hexo new page tags
 ```
@@ -75,7 +75,7 @@ menu:
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
 ```
-## 三、文章预览 
+### 三、文章预览 
 1. 修改themes/next/_config.yml文件里面auto_excerpt的enable属性改为true
 ```
 auto_excerpt:

@@ -3,8 +3,8 @@ title: '[极客时间]typescript'
 date: 2019-10-20 15:59:36
 tags:
 ---
-## 一、类型基础
-```
+### 一、类型基础
+```sh
 1. 强类型与弱类型
    强类型语言： 不允许改变变量的数据类型，除非进行强制类型转换
    弱类型语言： 变量可以被赋予不同的数据类型
@@ -17,7 +17,6 @@ tags:
    JS 在程序运行时，动态计算程序的偏移量
       需要额外空间存储属性名
       所有对象的偏移量信息各存一份
-
 3. ex
        mkdir ts_in_action && cd ts_in_action
     && npm init -y 
@@ -27,8 +26,8 @@ tags:
     && tsc ./src/index.ts
     && tsc ./src/index.ts
 ```
-## 二、类型基础
-```
+### 二、类型基础
+```ts
 ES6        TS的数据类型
 Boolean    Boolean   void
 Number     Number    any
@@ -74,8 +73,8 @@ null       null
       while(true){}
   }
 ```
-## 三、枚举类型
-```
+### 三、枚举类型
+```ts
 枚举： 一组有名字的常量集合
 
 //数字枚举
@@ -111,8 +110,8 @@ const enum Month{
 }
 let Month = [Month.Jan, Month.Feb, Month.Mar]
 ```
-## 四、接口
-```
+### 四、接口
+```ts
 1. 对象类型的接口
 2. 函数类型接口
 let add:(x:number,y:number) => number
@@ -149,8 +148,8 @@ A继承和成员修饰
 B抽象类与多态
 C类与接口的关系-接口只能约束类的公有方法
 ```
-## 五、泛型
-```
+### 五、泛型
+```ts
 1. 泛型函数
 函数重载|联合类型|any型 => 丢失了约束关系
 一个函数或者一个类可以支持多种数据类型
@@ -177,8 +176,8 @@ function log()<T extends Length>(value: T): T{
     return value
 }
 ```
-## 六、类型检查机制
-```
+### 六、类型检查机制
+```ts
 1. 类型推断
 2. 类型兼容： X兼容Y：X（目标类型） = Y（源类型）
   //接口兼容性： 成员少的兼容成员多的
@@ -298,8 +297,8 @@ function log()<T extends Length>(value: T): T{
     //ReturnType<T>
     type T7 = ReturnType<()=> string>
 ```
-## 七、ES6与commonJS的模块系统
-```
+### 七、ES6与commonJS的模块系统
+```ts
 tsconfig
    target: es5
    module: 'commonjs'  amd umd
@@ -309,8 +308,8 @@ tsconfig
 编写声明文件(umd global lib及插件(模块全局))
 
 ```
-## 八、tsconfig
-```
+### 八、tsconfig
+```js
 1. 与文件相关的选项
 files: ['./src/a.ts']//编译器需要编译的文件列表
 include: ['src'] //编辑器要编辑的目录，支持通配符
@@ -348,19 +347,19 @@ compilerOptions: {
   removeComments //删除注释
   downlevelIteration //降级遍历器的生成
   noEmitHelpers //不生成helper函数，需要额为安装ts-helpers
-  importantHelper 通过tslib引入help函数， 文件必须是模块
+  importantHelper //通过tslib引入help函数， 文件必须是模块
   strict //开启严格模式
   alwaysStrict //
   noImplicitAny //不允许any类型
   strictNullChecks //不允许把null undefined赋值给其他变量类型
   strictFunctionTypes //不允许函数的双向协变
-  strictPropertyInitalization 类的实例必须初始化
-  strictBindCallApply 严格的bind/call/apply检查
-  noImplicitThis 不允许this有隐式的any类型
+  strictPropertyInitalization //类的实例必须初始化
+  strictBindCallApply //严格的bind/call/apply检查
+  noImplicitThis //不允许this有隐式的any类型
 
-  noUnusedLoacls 检查之生命，未使用的局部变量
-  noUnusedParameters 检查未使用的函数参数
-  noFallthroughCasesInSwitch 防止switch语句贯穿
+  noUnusedLoacls //检查之生命，未使用的局部变量
+  noUnusedParameters //检查未使用的函数参数
+  noFallthroughCasesInSwitch //防止switch语句贯穿
   noImplicitReturns //每个分支都要又返回值
   esModuleInterop //允许export = 导出， 由important from 导入
   allowUmdGlobalAccess //允许在模块中访问UMD全局变量
@@ -376,16 +375,16 @@ compilerOptions: {
 3. 工程引用
 
 ```
-## 九、编译工具
-```
+### 九、编译工具
+```js
 1. 编译工具: ts-loader awesome-typescript-loader
 2. 代码检查工具： eslint
 typescript=> 类型检查+语言转换
 3. jest单元测试
 4. 函数与类组件
 ```
-## 十、ts-js共存，对于旧项目的改造迁移
-```
+### 十、ts-js共存，对于旧项目的改造迁移
+```js
 1. 共存策略<ts和js并存>
 2. 宽松策略<将js重命名魏tsx, 修改ts规则让编译通过>
 3. 严格策略<改成真正的ts>

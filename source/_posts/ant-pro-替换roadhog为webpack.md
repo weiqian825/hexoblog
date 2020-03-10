@@ -9,14 +9,15 @@ tags:
 - roadhog
 ---
 
-## 前言
-admin项目最初时间紧迫，再确定了使用react技术栈后，选择了快速产出的antd及开箱即用的框架antd-pro。当初框架用的有多爽，后来就有多哭～ 
-9月底决定干掉框架，造一些自己的轮子，为了不影响线上业务，分为3个步骤做：1.替换打包roadhog为webpack 2.替换dva框架为开源的react技术栈 3.替换antd的UI
-本篇主要记录替换roadhog的步骤
+### 前言
+admin项目最初时间紧迫，再确定了使用react技术栈后，选择了快速产出的antd及开箱即用的框架antd-pro。当初框架用的有多爽，后来就有多哭～
 
-## 一、替换步骤概览（what）
-```
-1. 新建webpack的配置 config/webpack.base.conf.js|webpack.dev.conf.js|webpack.prod.conf.js
+9月底决定干掉框架，造一些自己的轮子，为了不影响线上业务，分为3个步骤做：1.替换打包roadhog为webpack 2.替换dva框架为开源的react技术栈 3.替换antd的UI
+本篇主要记录替换roadhog的步骤。
+
+### 一、替换步骤概览（what）
+```javascript
+1. 新建webpack的配置 config/webpack.base.conf.js|webpack.dev.conf.js|webpack.prod.conf.js
 2. 删除webpackrc.js、paths.js，删除package.json里面的roadhog相关包和命令
 3. 新增package.json里webpack的依赖包及相关命令、配置babelrc等
 4. 删除原来移动文件操作的build.js，改成新的build.js，做终端的编译美化工作。
@@ -25,25 +26,25 @@ admin项目最初时间紧迫，再确定了使用react技术栈后，选择了�
 7. 删除所有关于登录权限的模块，我们的权限是后台控制的相当于前端不做权限模块。
 ```
 
-## 二、为什么要做替换呢(why)
+### 二、为什么要做替换呢(why)
 当初选择的理由只有一个，是框架里自带的，适合快速产出，替换的理由却有很多
-```
+```javascript
 1. roadhog jenkins build经常失败，原因未知，解决办法，换个版本号呵呵
 2. roadhog 阉割了的webpack，一些自定义的功能接口不能使用，不太方便
 3. roadhog 相当于又学了一个不通用的轮子，开源的东西可能更好一些
 4. 我们想做自己的脚手架，从打包到ui最终都尽量用自己的东西，更好掌控一些
 ```
-## 三、首次迁移的遗留问题
-```
+### 三、首次迁移的遗留问题
+```javascript
 1. 打包过大，按需加载，优化
 2. 其他的更酷的配置，我们目前只用了webpack一些最常见的配置
 3. 有一些有问题的配置，例如引不进react，强行插入了，先运行起来
-4. 在layout和router、menu中需要做的细节工作很多
+4. 在layout和router menu中需要做的细节工作很多
 ```
 后面回持续跟进解决这些问题
-## 四、打包工具替换具体细节
+### 四、打包工具替换具体细节
 1. webpack相关配置
-```
+```javascript
 // webpack.base.conf.js
 const path = require('path')
 const SRC_PATH = path.resolve(__dirname, '../src')
@@ -94,7 +95,7 @@ module.exports = config
 
 ```
 webpack.dev.conf.js
-```
+```javascript
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf.js')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -203,8 +204,8 @@ module.exports = merge(baseWebpackConfig, {
   }
 })
 ```
-webpack.prod.conf.js
-```
+```javascript
+// webpack.prod.conf.js
 const merge = require('webpack-merge')
 const webpack = require('webpack')
 const baseWebpackConfig = require('./webpack.base.conf.js')
@@ -371,7 +372,7 @@ module.exports = config
 ```
 
 2. package.json 删除原有的roadhog部分script，替换成新的webpack的相关命令
-```
+```javascript
 "scripts": {
     "debug": "webpack-dev-server --config config/webpack.dev.conf.js",
     "analysis": "ANALYZE=true node scripts/build.js",
@@ -436,7 +437,7 @@ module.exports = config
 
 ```
 3. babelrc.js   postcss.config.js 
-```
+```javascript
 module.exports = {
   presets:[
     [
@@ -473,7 +474,7 @@ module.exports = {
 }
 ```
 postcss.config.js 
-```
+```javascript
 module.exports = () => ({
   plugins: {
     autoprefixer: { browsers: ['last 5 version', '>1%', 'ie >= 8'] }
@@ -481,7 +482,7 @@ module.exports = () => ({
 })
 ```
 4. build脚本美化终端展示
-```
+```javascript
 const ora = require('ora')
 const chalk = require('chalk')
 const webpack = require('webpack')
@@ -509,9 +510,9 @@ webpack(webpackConfig, function (err, stats) {
   ))
 })
 ```
-## 五、路由相关地方替换细节
+### 五、路由相关地方替换细节
 1. 删除原有router配置，将menu和router的配置合并在一起
-```
+```javascript
 import { countryCodeID } from '@const/index'
 export const menuData = [
   {
@@ -639,7 +640,7 @@ const getRouterData = (menuData) => {
 export const routerData = getRouterData(menuData)
 ```
 2. BasicLayout
-```
+```javascript
 import React, { createElement } from 'react'
 import { Layout } from 'antd'
 import { connect } from 'dva'
@@ -764,9 +765,9 @@ export default connect(({ login, global }) => ({
 ```
 删掉那些多的模块一直做减法，遇到报错就google大概就差不多了
 
-## 六 要安装的基础包大概如下
+### 六、 要安装的基础包大概如下
 
-```
+```javascript
 [wepack]     |   webpack-cli webpack webpack-merge
 [react]      |   react react-dom
 [babel]      |   babel-loader @babel/preset-core @babel/preset-env @babel/preset-core

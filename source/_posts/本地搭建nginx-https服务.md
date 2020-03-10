@@ -7,10 +7,10 @@ tags:
 - nginx
 - https
 ---
-## 前言
+### 前言
   前几天，pm反馈页面被运营商劫持，出现了小广告，我们检查了项目内并没有http链接，理论上都是https应该不回被劫持，后来发现反馈的页面是外部的投放资源是http，另外我们的nginx配置的兜底策略关闭掉直接访问页面的http链接。所以需要在本地验证一波https的nginx配置。
 
-## 一、相关原理
+### 一、相关原理
 
 1. 对称加密
 2. 非对称加密
@@ -19,10 +19,10 @@ tags:
 5. https session Key
 6. openssl
    
-## 二、生成本地证书
+### 二、生成本地证书
 
 1. 具体命令
-```
+```sh
 // a. 准备工作，这里新建目录在～，遇到一个建desktop，后面的nginx404的坑原因不明
 cd ~ && mkdir sshkey && cd sshkey && mkdir demoCA && cd demoCA && touch index.txt && touch serial && echo "01">./serial && mkdir newcerts
 // b. 生成ca.key CA私钥
@@ -39,7 +39,7 @@ openssl req -new -key www.example.com.pem -out www.example.com.csr
 openssl ca -policy policy_anything -days 1460 -cert ca.crt -keyfile ca.key -in www.example.com.csr -out www.example.com.crt
 ```
 2. 遇到问题
-```
+```sh
 // problem default_ca
 Using configuration from /private/etc/ssl/openssl.cnf
 variable lookup failed for ca::default_ca
@@ -49,7 +49,7 @@ cp /usr/local/etc/openssl/openssl.cnf /private/etc/ssl/openssl.cnf
 dir >> = /Users/weiqian/sshkey/demoCA > >
 ```
 3. 具体操作演示
-```
+```sh
 ➜  ~ cd ~ && mkdir sshkey &&  cd sshkey && mkdir demoCA && cd demoCA && touch index.txt && touch serial && echo "01">./serial && mkdir newcerts
 ➜  demoCA openssl genrsa -des3 -out ca.key 2048
 
@@ -167,14 +167,14 @@ Password:
 ➜  sshkey sudo  nginx -c  /Users/weiqian/sshkey/nginx-https.conf
 ```
 
-## 三、nginx配置
+### 三、nginx配置
 1. 修改host
-```
+```sh
 sudo vim /etc/hosts
 127.0.0.1 www.example.com
 ```
 2. nginx-https.conf
-```
+```nginx
 user root owner;
 worker_processes 1;
 events {
@@ -210,12 +210,12 @@ http{
 }
 ```
 3. 运行nginx
-```
+```sh
 sudo nginx -s stop
 sudo  nginx -c  /Users/weiqian/sshkey/nginx-https.conf
 ```
 访问 www.example.com
-## 四、chrome将证书设置为始终信任
+### 四、chrome将证书设置为始终信任
 1. 打开浏览器，访问 www.example.com，点击=>tab不安全=>证书=>图标拖到桌面
 2. 打开钥匙串，把桌面的证书拖进去[系统|证书]，选择始终信任
 3. 重新访问www.example.com，页面内容显示test https example

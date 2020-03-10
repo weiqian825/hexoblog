@@ -3,8 +3,8 @@ title: react读书笔记
 date: 2019-08-17 13:03:39
 tags:
 ---
-## 一、react出现背景
-```
+### 一、react出现背景
+```js
 1. 出现的问题根源，2013年fb的简单功能一再出现bug
 
 2. 传统的UI操作(DOM api)关注了太多的细节（一般是用jq来进行局部更新）
@@ -27,8 +27,8 @@ react始终整理刷新页面
   
 4. Flux架构的衍生项目 redux + mbox
 ```
-## 二、以组件方式考虑ui的构建
-```
+### 二、以组件方式考虑ui的构建
+```js
 1. 将UI组织成组件树的形式
 
 2. 理解react组件
@@ -49,8 +49,8 @@ react始终整理刷新页面
   b 组件尽量无状态 所需数据由props获得
 
 ```
-## 三、JSX本质：不是模版语言，只是语法糖
-```
+### 三、JSX本质：不是模版语言，只是语法糖
+```js
 JSX: 在javascript代码中直接写html标记
 
 1. JSX本质：动态创建组件的语法糖
@@ -78,7 +78,7 @@ JSX: 在javascript代码中直接写html标记
   c jsx标记是可以直接使用属性语法的 如<item.Menu>
 ```
 
-## 四、react组件的生命周期
+### 四、react组件的生命周期
 ```
                                   |  创建时        更新时      卸载时
   render阶段                       |  constructor
@@ -89,7 +89,7 @@ JSX: 在javascript代码中直接写html标记
   -------------------------------------------------------------------
   commit阶段[使用Dom，运行副作用，安排更新] |   componentDidMount|  componentDidUnmount|componentDidUnmount                                          
 ```
-```
+```js
 1. constructor 
   a 初始化内部状态，比较少使用
   b 唯一可以直接修改state的地方
@@ -122,8 +122,8 @@ JSX: 在javascript代码中直接写html标记
   b 一般可以由PureComponent自动实现
   c 典型场景：性能优化
 ```
-## 五、Virtual Dom (Diff算法)
-```
+### 五、Virtual Dom (Diff算法)
+```js
 1. 虚拟Dom工作原理
   标准的2个tree diff 0n3次方
   react Diff算法O(n)
@@ -135,8 +135,8 @@ JSX: 在javascript代码中直接写html标记
   B类型相同的兄弟节点可以唯一被标识（key不仅是消除warning，而 且是提升性能）
 
 ```
-## 六、高阶组件（HOC）
-```
+### 六、高阶组件（HOC）
+```js
 组件复用的另外2种形式：高阶组件和函数作为子组件
 
 1. 高阶组件
@@ -149,8 +149,8 @@ c 高阶组件接受组件作为参数，返回新的组件
   <MyComponent>{(name) => (<div>{name}</div>)} </MyComponent>
   一个组件如何render的内容可以很大程度上由使用它的让你来决定
 ```
-## 七、contextApi
-```
+### 七、contextApi
+```js
 1. contextApis使用方法
   根节点 provide
   使用contextApi consume
@@ -167,9 +167,9 @@ c 高阶组件接受组件作为参数，返回新的组件
 2. 使用场景： i18n
 
 ```
-## 八、使用脚手架工具
+### 八、使用脚手架工具
 
-```
+```js
 1. 使用脚手架工具创建React应用
   create react app 
   codesandbox.io
@@ -189,8 +189,8 @@ c 高阶组件接受组件作为参数，返回新的组件
   codesandbox 在线的IDE脚手架，不需要搭建本地环境就可以直接开发，webpack打包的是运行在浏览器端的，很牛逼，平常都是在node端运行webpack
 
 ```
-## 九、打包和部署
-```
+### 九、打包和部署
+```js
 1. 为什么要打包
   a 编译ES6语法特性，编译JSX
   b 整合资源，例如图片，Less/Sass
@@ -203,8 +203,8 @@ c 高阶组件接受组件作为参数，返回新的组件
 
 ```
 
-## 十、Redux（1）JS状态管理框架
-```
+### 十、Redux（1）JS状态管理框架
+```js
 1. 为什么需要redux
   react组件工作：把state转换成DOM结构（组件内部发生）
   redux工作：store->DOM(把状态放到组件外部管理)
@@ -219,10 +219,9 @@ c 高阶组件接受组件作为参数，返回新的组件
     view
   b 可预测性 state + action = new sate
   c 纯函数[输出结果完全取决于输入参数，不依赖任何外部]更新store
-
 ```
-## 十一、Redux（2）深入理解store action
-```
+### 十一、Redux（2）深入理解store action
+```js
 1. 理解Store
   const store = createStore(reducer)
   a getState
@@ -324,10 +323,10 @@ function run() {
   minusOne()
 }
 ```
-## 十二、Redux（3）在react中使用redux
+### 十二、Redux（3）在react中使用redux
 
 1. component =>connect=> store
-```
+```js
 import { connect } from 'react-redux'
 class SidePanel extends Component{
 
@@ -346,17 +345,16 @@ function mapDispatchToProps(dispatch){
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(SildePannel)
-
 ```
 2. connect 工作原理： 高阶组件
-```
+```js
     connect(Mycomp) <---store<---
 Mycomp <--传入props             reducers
                     <---actions--->
 ```
-## 十三、Redux（4）理解异步Action Redux中间件
+### 十三、Redux（4）理解异步Action Redux中间件
 [异步ReduxAction](/images/异步redux.png)
-```
+```js
 1. redux异步请求：到Middleware进行预处理，再形成最后的action然后dispatch。异步ReduxAction比同步ReduxAction多了一个Middleware，Middleware帮助实现异步action流程
 异步action并不是redux的概念，而是一个action的设计模式，是几个同步action的组合
 
@@ -425,8 +423,8 @@ export function reducer(state, action) {
   }
 }
 ```
-## 十四、Redux（5）如何组织actions和reducer
-```
+### 十四、Redux（5）如何组织actions和reducer
+```js
 1. 标准形式的redux action的问题
   a 所有action放一个文件，会无限拓展
   b action reducer 分开，实现业务逻辑需要来回切换
@@ -438,8 +436,8 @@ export function reducer(state, action) {
   c 易于测试： 每个业务逻辑只需要对应一个测试文件
   d 易于理解： 文件名就是action名字，文件列表就是action列表
 ```
-## 十五、Redux（6）不可变数据（immutable data）
-```
+### 十五、Redux（6）不可变数据（immutable data）
+```js
 1. 为何需要不可变数据
   a 性能优化（只需要比较引用）
   b 易于调试和跟踪（看前一个数据，后一个数据状态）
@@ -459,8 +457,8 @@ export function reducer(state, action) {
     product接受旧状态，新生成新数据的一个代理draft，对draft的任何造作都会再immer内部以不可变数据操作
     当节点层数很多很多，会为每个属性建立一个代理，操作会有一定的性能问题。
 ```
-## 十六、React Router(1): 路由不只是页面切换，更是代码的组织方式
-```
+### 十六、React Router(1): 路由不只是页面切换，更是代码的组织方式
+```js
 1. 为什么需要路由
   a 单页面应用需要进行页面切换
   b 通过url可以定位到页面
@@ -522,7 +520,7 @@ import {Link， NavLink } from 'react-router-dom'
 <Link /> => 类似<a>，不会触发浏览器刷新
 NavLink => 类似Link但是会添加当前选中的状态，<NavLink to='/fag' xxxClassName={xxxClass}>
 ```
-```
+```js
 import { Prompt, Route, Redirect, Switch } from 'react-router'
 <Prompt when={formIsOk} message='are you sure you want to leave'> 满足条件时候提醒用户是否离开当前页面
 <Redirect />重定向单前页面
@@ -532,8 +530,8 @@ import { Prompt, Route, Redirect, Switch } from 'react-router'
 <Route />路径匹配时候显示对应组件
 <Switch />只显示第一个匹配的路由
 ```
-## 十七、React Router(2): 参数定义，嵌套路由的使用场景
-```
+### 十七、React Router(2): 参数定义，嵌套路由的使用场景
+```js
 1. 通过url传递参数
   a 如何通过url传递参数 <Route path='/topic/:id' />
   b 如何获取参数 this.props.match.params
@@ -546,8 +544,8 @@ import { Prompt, Route, Redirect, Switch } from 'react-router'
   b React Router声明式语法可以方便的定义嵌套路由
   react route标记是可以多个匹配的，因为他只是react的一个组件
 ```
-## 十八、 UI组件库对比介绍 ant.Design, Material UI, Semantic UI
-```
+### 十八、 UI组件库对比介绍 ant.Design, Material UI, Semantic UI
+```js
 1. 当前比较流行的
  ant.Design => 企业级应用，数据密集合理，复杂场景
  Material UI => 更花哨消费者
@@ -562,8 +560,8 @@ import { Prompt, Route, Redirect, Switch } from 'react-router'
   d 技术支持是否完善（文档issue等）
   c 开发是否完善（稳定团队）
 ```
-## 十九、 使用next.js创建react的同构应用
-```
+### 十九、 使用next.js创建react的同构应用
+```js
 1. 什么是同构应用
   浏览器                 服务器
       -->初次发送请求-->   
@@ -590,9 +588,9 @@ import { Prompt, Route, Redirect, Switch } from 'react-router'
   import dynamic from 'next/dynamic'
   const DynamicHello = dynamic(import('./xxx'))
 ```
-## 二十、 使用Jest, Enzyme等工具进行单元测试
+### 二十、 使用Jest, Enzyme等工具进行单元测试
 
-```
+```js
 1. React让单元测试变得容易
   a React应用很少需要访问浏览器API
   b 虚拟DOM可以在NodeJS环境运行和测试
@@ -606,8 +604,8 @@ import { Prompt, Route, Redirect, Switch } from 'react-router'
   e sinon: 函数的模拟和调用跟踪
   f istanbul: 单元测试覆盖率
 ```
-## 二十一、 常用的开发调试工具 Eslint、Prettier、React DevTool、Redux DevTool
-```
+### 二十一、 常用的开发调试工具 Eslint、Prettier、React DevTool、Redux DevTool
+```js
 1. Eslint 语法风格检查
   a 使用.eslintrc进行规则配置
   b 使用airbnb的javascript代码风格
@@ -651,18 +649,17 @@ import { Prompt, Route, Redirect, Switch } from 'react-router'
   c timeMachine jump(可以停止到某个状态，不用debugger)
   d test 测试某个action是否正确，拷贝到单元测试文件中，就可以形成一个完整的testcase
 ```
-## 二十二、 前端理想架构
-```
+### 二十二、 前端理想架构
+```js
 1.理想架构
   易于开发--> 开发工具是否完善、生态圈是否繁荣、社区是否活跃
   易于维护--> 增加新功能是否容易、新功能是否会显著的增加系统的复杂度
   易于扩展--> 代码是否容易理解、文档是否健全
   易于测试--> 功能的分层是否清晰、副作用（外部变量）少、尽量使用纯函数
   易于构建--> 使用通用技术和架构、构建工具的选择（webpack rollup）
-
 ```
-## 二十三、 拆分复杂度rekit 
-```
+### 二十三、 拆分复杂度rekit 
+```js
 1. 按照领域模型（feature）组织代码，降低耦合度
    eg 文件夹结构
    a 按照feature组织源文件
@@ -682,22 +679,22 @@ import { Prompt, Route, Redirect, Switch } from 'react-router'
 4. 通过代码生成保持一致性
    文件夹结构、文件名、变量名、代码逻辑一致性
 ```
-## 二十四、使用react router来管理登陆
+### 二十四、使用react router来管理登陆
 
-```
+```js
 1. 使用react router管理路由授权
    实现基础是react router的动态路由机制
    区分受保护路由和公开路由
    访问未授权路由时重定向到登陆页面
   （方法： 动态修改路由配置）
 ```
-## 二十五、实现表单、列表页面、react-router实现分步操作
+### 二十五、实现表单、列表页面、react-router实现分步操作
 
-```
+```js
 1. form = validator + jsonschema
 
 2. 设计list 
-  a redux的store模型设计
+  a redux的store模型设计
   {
      listItems: array
      keyword: string
@@ -713,9 +710,8 @@ import { Prompt, Route, Redirect, Switch } from 'react-router'
   a 使用url进行导航的好处
   b 表单内容存放的位置
   c 页面状态如何切换
-  
 ```
-## 二十六、常见的布局方式实现、ReactPortals
+### 二十六、常见的布局方式实现、ReactPortals
 ```
 1. 常见页面布局的实现
   a 从0开始用css实现
@@ -731,44 +727,41 @@ import { Prompt, Route, Redirect, Switch } from 'react-router'
   解决了漂浮层的问题，比如：Dialog、ToolTip
 
 ```
-## 二十七、 集成第三方js库，例如d3.js
-```
+### 二十七、 集成第三方js库，例如d3.js
+```js
 1. 集成第三方JS库的技术要点
   a 使用ref获取原生DOM节点引用
   b 手动将组件状态更新到DOM节点
   c 组件销毁时移除原生节点DOM事件
   核心：这些js库都是在操作真实的dom节点
-
 2. demo
 ```
-## 二十八、 基于路由实现菜单导航
-```
+### 二十八、 基于路由实现菜单导航
+```js
 1. 技术要点
   a 菜单导航只是改变url状态
   b 根据当前url显示菜单的当前状态
-
 2. demo NavLink
 ```
-## 二十九、 react中拖放的实现
-```
+### 二十九、 react中拖放的实现
+```js
 1. 技术要点
   a 如何使用React的鼠标事件系统
   b 如何判断拖放开始和拖放结束
   c 如何实现拖放元素的位置移动
   d 拖放状态在组件中如何维护
-
 2. demo
   react-beautiful-dnd虽然好，但是太繁琐了，自己需要明白怎么搞dnd的原理
 ```
-## 三十、性能优化（如何避免应用出现性能问题）
-```
-1.了解常见的性能问题场景[例如键盘输入、鼠标移动例如滚动页面]
+### 三十、性能优化（如何避免应用出现性能问题）
+```js
+1. 了解常见的性能问题场景[例如键盘输入、鼠标移动例如滚动页面]
 2. 自动按需加载[loadable|webpack按需加载]
 3. 使用reselect避免重复计算
 4. 异步渲染
 ```
-## 三十一、使用Chrome DevTool
-```
+### 三十一、使用Chrome DevTool
+```js
 1. 使用react DevTool 找到多余的渲染
 2. 使用Chrome DevTool 定位性能瓶颈
 ```

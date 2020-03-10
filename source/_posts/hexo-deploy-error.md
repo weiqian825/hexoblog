@@ -103,9 +103,9 @@ To github.com:weiqian93/weiqian93.github.io.git
    b07fcdf..7a089f0  HEAD -> master
 Branch 'master' set up to track remote branch 'master' from 'git@github.com:weiqian93/weiqian93.github.io.git'.
 INFO  Deploy done: git 
-``` 
+```
 
-## 原理
+### 原理
 
 ```
 为什么会出现这个错呢？

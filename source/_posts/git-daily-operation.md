@@ -113,7 +113,7 @@ git cherry-pick xxxxx
         
     ```
     demo
-    ```
+    ```sh
     ➜  Windrunner git:(test_notice) git log --oneline
     ➜  Windrunner git:(test_notice) git rebase -i HEAD~10
     ➜  Windrunner git:(fdd5404) ✗ git rebase --abort
@@ -179,9 +179,9 @@ git cherry-pick xxxxx
     Automatic merge failed; fix conflicts and then commit the result.
     ➜  Windrunner git:(test_notice) ✗ git add -A
     ➜  Windrunner git:(test_notice) ✗ npm run commit
-        ```
+   ```
 4. 日常新建一个仓库之后要做的
-    ```
+    ```sh
     Git global setup
     git config --global user.name "Qian Wei"
     git config --global user.email "qian.wei@xxxxx.com"
@@ -216,7 +216,7 @@ git cherry-pick xxxxx
     ```
 5. cherry-pick、reset、revert
 6. git对文件名的大小写不敏感，修改了文件的大小写，git st并没有改动
-   ```
+   ```sh
    //方法一 git设置忽略文件
    git config core.ignorecase false
    //方法二 git rm/add/commit xxx
@@ -227,7 +227,7 @@ git cherry-pick xxxxx
 7. 更改git提交记录的author和email[方法](   https://help.github.com/en/articles/changing-author-info)
 
    执行脚本
-   ```
+   ```sh
     #!/bin/sh
 
     git filter-branch --env-filter '
@@ -247,5 +247,5 @@ git cherry-pick xxxxx
         export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
     fi
     ' --tag-name-filter cat -- --branches --tags
-    ```
+   ```
     git push --force --tags origin 'refs/heads/*'

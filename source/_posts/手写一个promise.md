@@ -5,14 +5,15 @@ tags:
 - promise
 ---
 
-## 一、概念
+### 一、概念
   promise在javascript早有实现，es6将其写进了语言标准[PromiseA+](https://promisesaplus.com/)，统一了用法，并原生提供了promise对象。
   promise就是一个对象，用来传递一步操作的消息。它代表了某个未来才知道结果的事件(通常是一个异步操作)，并且这个实践提供了统一的api，可供进一步处理。
   promise对象特点
+
   1. 对象状态不受外界影响。Pending|Resolved|Rejected。只有异步操作结果可以决定当前是哪一种状态，其他操作都无法改变这个状态。
   2. 一旦状态改变就不会再变。Pending->Rejected或者Pending->Rejected，只要其中之一发生，状态就会凝固，不会再变，一直保持这个结果。
-  有了promise，就可以讲异步操作以同步操作的流程表达出来，避免了层层的嵌套的回调函数。
-## 二、new Promise(executor)
+    有了promise，就可以讲异步操作以同步操作的流程表达出来，避免了层层的嵌套的回调函数。
+### 二、new Promise(executor)
 ```
 function MyPromise(executor) {
     let self = this
@@ -57,7 +58,7 @@ promise.then(function(value){
   console.log('failure then -->',reason)
 })
 ```
-## 三、基础版本
+### 三、基础版本
 // 表示某一段时间以后才会发生的结果，过指定时间后，Promsise的实栗状态会变成resolved
 function timeout(ms){
     return new MyPromise((resolve, reject) => {
@@ -134,6 +135,6 @@ timeout(3000).then((value) => {
 
 ```
 
-## 四、promise then
+### 四、promise then
 
 
