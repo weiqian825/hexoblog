@@ -21,3 +21,7 @@ brew install curl
 
 ```
 持续补充总～～～
+
+http://www.cockos.com/licecap/
+
+"editor.tokenColorCustomizations": {    "comments": "#82e0aa", // 注释    "keywords": "#0a0", // 关键字    "variables": "#f00", // 变量名    "strings": "#e2d75dbd", // 字符串    "functions": "#5b99fcc9", // 函数名    "numbers": "#AE81FF" // 数字  },  // 选中高亮的颜色     "workbench.colorCustomizations": {      "editor.selectionBackground": "#aa0000"  }

@@ -56,7 +56,48 @@ Razzle作者、react领域目前star(21k )最多的form formik https://github.co
 
 阿里集团共建的表单领域型解决方案Formily
 
+内部的表单渲染从过去对React已知的单向数据流概念变成了点对点通讯模式
 
+### 时间旅行能力
+
+采用了Observable Graph的数据结构来管理整个表单的状态，使得表单任何状态都是可观察的，表单状态也是Immutable的
+
+https://codesandbox.io/s/exciting-wing-n6xsu
+
+https://codesandbox.io/s/smoosh-pine-uxv9n
+
+
+
+分布式管理状态，点对点的主动更新字段状态，
+
+路径系统
+
+jQuery那种模式下，最强大的特性是啥？当然是选择器
+
+式层面，我们可以有css selector
+
+文件路径，我们都能有glob selector
+
+表单场景，它的核心就是一个dot path嘛 Selector DSL
+
+- 简单路径a.b.c.d, a.b.c.0.d, a.b[1]
+
+- 批量路径 借鉴glob里面的*
+
+- 分组路径*(aa,bb,cc)
+
+- 排除选择！
+
+  ### **解析器原理** cool-path 
+
+Parser，基于状态机+Tokenizer，生成AST Tree
+
+### **路径管理模型**
+
+- 解析路径
+- 匹配路径
+- 操作路径
+- 基于路径的取值，设值，批量取值，批量设值
 
 @**uform/core**
 
@@ -89,9 +130,14 @@ Razzle作者、react领域目前star(21k )最多的form formik https://github.co
 @**uform/antd or @uform/next**
 
 - 废除过去私有FormItem样式，全部继承组件库样式，所以不会再存在18px的空白占位符问题，同时也能支持对应组件库的主题样式定制能力
+
 - 废除array组件的默认样式，统一采用cards样式，更加标准化，也能很好的适配组件库主题样式定制能力
+
 - array table内部的table组件采用了对应组件库的table，可以适配更加复杂的table定制需求
+
 - 支持了FormStep布局组件，可以非常方便的处理分步表单场景
+
+  
 
 ##### 或许formliy可以和这些有关系
 
