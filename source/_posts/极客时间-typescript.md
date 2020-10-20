@@ -389,5 +389,40 @@ typescript=> 类型检查+语言转换
 2. 宽松策略<将js重命名魏tsx, 修改ts规则让编译通过>
 3. 严格策略<改成真正的ts>
 ```
+### 十一、weather demo
+1. 初始化项目
+```
+mkdir projectDemo
+code projectDemo
+touch index
+yarn init
+yarn add ts-node typescript -d
+//配置tsconfig
+yarn tsc --init
+//配置tslint(js-eslint, ruby-rubocop)
+yarn add tslint -d
+yarn tslint --init
+//配置git
+touch .gitignore
+//配置husky
+yarn add husky -d
+添加husky的hooks
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn tslint -c tslint.json 'src/**/*.ts'"
+    }
+  }
+//
+```
+2. Commander.js
+```
+yarn add commander
+yarn add @types/node
+```
+3. 添加色彩
+```
+yarn add color
+yarn add axios
+```
 
 
