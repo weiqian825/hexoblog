@@ -28,6 +28,7 @@ export const PageContainer: typeof shopeePageContainer = (
   )
 }
 
-createShopeeRegistry （AppRegistry.registerComponen）
-
+xxxxRegistry = createShopeeRegistry(AppRegistry.registerComponen）
+xxxxRegistry.registerComponent(pageName, () => Container);
 ```
+

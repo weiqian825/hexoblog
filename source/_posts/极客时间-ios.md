@@ -138,3 +138,46 @@ shift+command+o UITabBarController 这个是 open quickly 的快捷键，可以�
     self.window.rootViewController = tabbarController;
     [self.window makeKeyAndVisible];
 ```
+
+
+### 三、ios基本页面的构成和实现
+
+1. UIWindow 
+```
+M+ V+ C
+UIWindow （特殊形式的UIView，提供App中展示内容的基础窗口）
+
+使用storyborad会帮我们自动创建
+手动创建：创建UIWindow、设置rootViewCotroller、makeKeyAndVisiable
+```
+
+2. delegate设计模式
+```
+设计者  
+提供一些使用者可以自定义的操作
+@optional/@required注解
+提供@property-delegate
+在对应的时机，让delegate执行对应的方法
+
+使用者
+delegate = self按需实现方法
+```
+3. UITableView简介
+```
+系统的列表类型组件，提供默认基础的UITableViewCell样式、header footer的管理，点击等。
+UITableViewCell: 系统提供复用回收池子
+NSINDEXPath（UIKitAddtion）
+```
+基于dataSource以及delegate驱动的
+4. UICollectionView  & UICollectionViewLayout
+```
+灵活的、可定制的列表类型组件
+UITableView 特殊布局的UICollectionView
+```
+5. UIScrollView
+UILabel
+UIImage
+UIImageView
+
+
+
