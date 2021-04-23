@@ -72,6 +72,10 @@ git branch -d branch-name //删除本地分支，发生过merge的才可以
 git branch -D branch-name //强制删除本地分支
 git push origin :branch-name  //删除远程分支
 git push -d origin branch-name //删除远程分支
+//删除本地分支
+git branch -a| grep -v -E 'master|release' | grep 'test.*' |  xargs -I {} git br -d {}
+//删除远程分支
+git branch -r| grep -v -E 'master|release' | sed 's/origin\/test/test/g' | xargs -I {} git push origin :{}
 ```
 
 七、命令缩写等小技巧
