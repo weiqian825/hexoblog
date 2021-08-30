@@ -7,7 +7,7 @@ tags:
 - chrome-extension
 - jira
 ---
-[乞丐版的GUI](https://weiqian93.github.io/2018/08/30/electron%E5%81%9Ago%E7%88%AC%E8%99%AB%E7%9A%84gui/)可以抓取jira，生成本地的csv，我们希望这个东西能直接写到chrome drive里面去，每个人安装一个exe，是有些大材小用了。于是开始重新规划搞一个[goole插件](https://developer.chrome.com/extensions)，负责抓取数据和写入drive。[源码](https://github.com/weiqian93/jira-auto/tree/chrome-extension-demo)
+[乞丐版的GUI](https://weiqian825.github.io/2018/08/30/electron%E5%81%9Ago%E7%88%AC%E8%99%AB%E7%9A%84gui/)可以抓取jira，生成本地的csv，我们希望这个东西能直接写到chrome drive里面去，每个人安装一个exe，是有些大材小用了。于是开始重新规划搞一个[goole插件](https://developer.chrome.com/extensions)，负责抓取数据和写入drive。[源码](https://github.com/weiqian825/jira-auto/tree/chrome-extension-demo)
 
 ### 一、 jira的数据处理
 
@@ -242,7 +242,7 @@ background.js代码稍微有点多，我们简单的模块化下，引入[es6-mo
 
 ### 三、合并抓取数据和写入drive
 
-[源码](https://github.com/weiqian93/jira-auto/tree/chrome-extension-demo)，再试用的时候发现问题，永远写入了一个人的账户，不管谁操作，猜想是client_id的问题，每个用户是否都在本地有唯一的授权id，毕竟操作google doc也算是比较敏感操作。测试后发现的确是这样，manifest.json里面oauth2部分的client_id是专属的，每个安装插件的人都需要申请google权限并且在manifest.json里面设置自己的专属client_id
+[源码](https://github.com/weiqian825/jira-auto/tree/chrome-extension-demo)，再试用的时候发现问题，永远写入了一个人的账户，不管谁操作，猜想是client_id的问题，每个用户是否都在本地有唯一的授权id，毕竟操作google doc也算是比较敏感操作。测试后发现的确是这样，manifest.json里面oauth2部分的client_id是专属的，每个安装插件的人都需要申请google权限并且在manifest.json里面设置自己的专属client_id
 
 ```json
     "oauth2": {
@@ -258,7 +258,7 @@ background.js代码稍微有点多，我们简单的模块化下，引入[es6-mo
 ```
 ### 四、配置google权限
 
-1. 获取插件[代码](https://github.com/weiqian93/jira-auto/tree/chrome-extension-demo)
+1. 获取插件[代码](https://github.com/weiqian825/jira-auto/tree/chrome-extension-demo)
 2. 获取插件 id
     打开[chrome插件](chrome://extensions/) 
     点击加载已解压的拓展程序，选择jira_auto整个目录，得到插件的id

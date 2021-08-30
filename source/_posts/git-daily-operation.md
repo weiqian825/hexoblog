@@ -232,7 +232,7 @@ git cherry-pick xxxxx
 
    Existing Git repository2
    cd existing_repo
-   git remote set-url origin https://github.com/weiqian93/vconsole.git
+   git remote set-url origin https://github.com/weiqian825/vconsole.git
    git push
    ```
 
@@ -256,7 +256,7 @@ git cherry-pick xxxxx
     git filter-branch --env-filter '
 
     OLD_EMAIL="qian.wei@shopee.com"
-    CORRECT_NAME="weiqian93"
+    CORRECT_NAME="weiqian825"
     CORRECT_EMAIL="540518665@qq.com"
 
     if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]

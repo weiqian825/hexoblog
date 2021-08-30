@@ -46,7 +46,7 @@ jobs:
       - run:
           command: |
             yarn build
-            git config --global user.name "weiqian93"
+            git config --global user.name "weiqian825"
             git config --global user.email "540518665@qq.com"
             yarn deploy
       - run: echo "==================== end build =============================="

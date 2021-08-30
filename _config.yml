@@ -80,5 +80,5 @@ theme: next
 deploy:
   type: git
   repo: 
-      github: git@github.com:weiqian93/weiqian93.github.io.git,master
+      github: git@github.com:weiqian825/weiqian825.github.io.git,master
 

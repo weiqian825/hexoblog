@@ -160,7 +160,7 @@ sudo vim /etc/hosts
  127.0.0.1 local.dp-admin.test.xxxxx.io
    ```
 重新运行npm run proxy、 npm run dev错误是一样的，正常线上页面也无法访问。哦我们忘了删掉host里面的配置，express出错，删掉host配置的   127.0.0.1 dp-admin.test.xxxxx.io，世界和平啊！！！
- [demo地址](https://github.com/weiqian93/react-demo/tree/master/webpack-cors)
+ [demo地址](https://github.com/weiqian825/react-demo/tree/master/webpack-cors)
 
 ### 四、create-my-app设置
   思路和webpack差不多 
@@ -187,7 +187,7 @@ componentDidMount () {
   })
 }
   ```
-  [demo地址](https://github.com/weiqian93/react-demo/tree/master/my-app-cors)
+  [demo地址](https://github.com/weiqian825/react-demo/tree/master/my-app-cors)
 
 
 

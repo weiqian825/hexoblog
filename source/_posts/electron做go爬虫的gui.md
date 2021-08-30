@@ -10,7 +10,7 @@ tags:
 ---
 一期要做的事情很简单，用electron给一个GO爬虫脚本做一个前端的GUI，顺便学习下[electron](https://electronjs.org/)
 ### 一、运行go爬虫
-[go爬虫](https://github.com/weiqian93/jira-auto/tree/master)先要简单配置下[go](https://golang.org/)的环境
+[go爬虫](https://github.com/weiqian825/jira-auto/tree/master)先要简单配置下[go](https://golang.org/)的环境
 ```js
 // 1. install go
 brew install go -g
@@ -23,10 +23,10 @@ export GOPATH=/Users/weiqian/go
 source ~/.bash_profile
 // 4. clone code in go/src 
 // method 1 use go get clone the code 
-go get github.com/weiqian93/jira-auto
+go get github.com/weiqian825/jira-auto
 //method 2  
 cd  /Users/weiqian/go/src/jira-auto
-git clone  https://github.com/weiqian93/jira-auto.git
+git clone  https://github.com/weiqian825/jira-auto.git
 // 5. run program
 go run main.go
 // 如果程序报错缺少库 go get 去安装就好了

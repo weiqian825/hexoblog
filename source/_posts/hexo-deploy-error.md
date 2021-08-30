@@ -16,7 +16,7 @@ INFO  Clearing .deploy_git folder...
 FATAL Something's wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html
 Error: EACCES: permission denied, unlink '/Users/weiqian/Desktop/hexo/.deploy_git/archives/index.html'
 ```
-刚开始以为是权限问题，git代码仓库可以正常提交，但是deploy d的时候总是不对，重新生成了[ssh密钥](https://weiqian93.github.io/2018/07/17/Git-ssh-key/)，依旧没有用，随后清理.deploy_git及.public目录。
+刚开始以为是权限问题，git代码仓库可以正常提交，但是deploy d的时候总是不对，重新生成了[ssh密钥](https://weiqian825.github.io/2018/07/17/Git-ssh-key/)，依旧没有用，随后清理.deploy_git及.public目录。
 
 ```
 rm -rf .deploy_git 
@@ -90,7 +90,7 @@ and the repository exists.
 Identity added: /Users/weiqian/.ssh/id_rsa_hexo (/Users/weiqian/.ssh/id_rsa_hexo)
 ➜  hexo git:(master) ✗ ssh git@github.com
 PTY allocation request failed on channel 0
-Hi weiqian93! You've successfully authenticated, but GitHub does not provide shell access.
+Hi weiqian825! You've successfully authenticated, but GitHub does not provide shell access.
 Connection to github.com closed.
 ➜  hexo git:(master) ✗ hexo d
 INFO  Deploying: git
@@ -99,9 +99,9 @@ INFO  Copying files from public folder...
 INFO  Copying files from extend dirs...
 On branch master
 nothing to commit, working tree clean
-To github.com:weiqian93/weiqian93.github.io.git
+To github.com:weiqian825/weiqian825.github.io.git
    b07fcdf..7a089f0  HEAD -> master
-Branch 'master' set up to track remote branch 'master' from 'git@github.com:weiqian93/weiqian93.github.io.git'.
+Branch 'master' set up to track remote branch 'master' from 'git@github.com:weiqian825/weiqian825.github.io.git'.
 INFO  Deploy done: git 
 ```
 
