@@ -178,7 +178,8 @@ function log()<T extends Length>(value: T): T{
 ```
 ### 六、类型检查机制
 ```ts
-1. 类型推断
+1. 类型推断：不需要指定变量的类型，typescript可以根据某些规则自动的为其推断出一个类型。 基础类型推断、最佳通用类型推断、上下文类型推断onkeydown
+避免滥用类型断言
 2. 类型兼容： X兼容Y：X（目标类型） = Y（源类型）
   //接口兼容性： 成员少的兼容成员多的
   interface X{a:any, b:any}
@@ -298,11 +299,13 @@ function log()<T extends Length>(value: T): T{
     type T7 = ReturnType<()=> string>
 ```
 ### 七、ES6与commonJS的模块系统
+- es6的模块化系统： 导出export，导入import
+- node模块化：导出modules.exports(exports是modules.exports的引用)
 ```ts
 tsconfig
    target: es5
    module: 'commonjs'  amd umd
- 
+
 命名空间
 理解声明合并
 编写声明文件(umd global lib及插件(模块全局))
