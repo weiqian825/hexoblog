@@ -182,9 +182,9 @@ git cherry-pick xxxxx
    Successfully rebased and updated refs/heads/test_notice.
    ➜  Windrunner git:(test_notice) git log
    ➜  Windrunner git:(test_notice) git push
-   To ssh://git.garena.com:2222/xxxxx/digital-purchase/Windrunner.git
+   To ssh://git.hahaha.com:2222/xxxxx/digital-purchase/Windrunner.git
     ! [rejected]        test_notice -> test_notice (non-fast-forward)
-   error: failed to push some refs to     'ssh://gitlab@git.garena.com:2222/xxxxx/digital-purchase/Windrunner.git'
+   error: failed to push some refs to     'ssh://gitlab@git.hahaha.com:2222/xxxxx/digital-purchase/Windrunner.git'
    hint: Updates were rejected because the tip of your current branch is behind
    hint: its remote counterpart. Integrate the remote changes (e.g.
    hint: 'git pull ...') before pushing again.
@@ -208,7 +208,7 @@ git cherry-pick xxxxx
    git config --global user.email "qian.wei@xxxxx.com"
 
    Create a new repository
-   git clone ssh://gitlab@git.garena.com:2222/qian.wei/sentry.git
+   git clone ssh://gitlab@git.hahaha.com:2222/qian.wei/sentry.git
    cd sentry
    touch README.md
    git add README.md
@@ -218,7 +218,7 @@ git cherry-pick xxxxx
    Existing folder
    cd existing_folder
    git init
-   git remote add origin ssh://gitlab@git.garena.com:2222/qian.wei/sentry.git
+   git remote add origin ssh://gitlab@git.hahaha.com:2222/qian.wei/sentry.git
    git add .
    git commit -m "Initial commit"
    git push -u origin master
@@ -226,7 +226,7 @@ git cherry-pick xxxxx
    Existing Git repository
    cd existing_repo
    git remote rename origin old-origin
-   git remote add origin ssh://gitlab@git.garena.com:2222/qian.wei/sentry.git
+   git remote add origin ssh://gitlab@git.hahaha.com:2222/qian.wei/sentry.git
    git push -u origin --all
    git push -u origin --tags
 
