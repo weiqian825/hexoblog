@@ -1,5 +1,5 @@
 ---
-title: "git daily operation "
+title: 'git daily operation '
 date: 2018-07-30 15:41:28
 categories:
   - tools
@@ -255,7 +255,7 @@ git cherry-pick xxxxx
 
     git filter-branch --env-filter '
 
-    OLD_EMAIL="qian.wei@shopee.com"
+    OLD_EMAIL="qian.wei@hahaha.com"
     CORRECT_NAME="weiqian825"
     CORRECT_EMAIL="540518665@qq.com"
 

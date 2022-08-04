@@ -13,7 +13,7 @@ brew install mysql
 mysql.server start
 //mysql安全设置（密码等）
 mysql_secure_installation
-//a)为root用户设置密码，建议设置成：shopee@2020
+//a)为root用户设置密码，建议设置成：hahaha@2020
 //b)删除匿名账号
 //c)取消root用户远程登录
 //d)删除test库和对test库的访问权限
@@ -35,7 +35,7 @@ show databases;
 ```
 DB_PORT=3306
 DB_USERNAME=root
-DB_PASSWORD=shopee@2020
+DB_PASSWORD=hahaha@2020
 DB_DATABASE=db_portal_dev
 DB_HOST_MASTER=localhost
 DB_HOST_SLAVE=localhost
@@ -51,7 +51,7 @@ DB_HOST_SLAVE=localhost
 //查看mysql的版本
 SELECT VERSION();
 //降级mysql的认证方式
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'shopee@2020';
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'hahaha@2020';
 //刷新权限
 flush privileges;
 ```

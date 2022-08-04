@@ -11,14 +11,14 @@ PageContainer(
   MODULES.OUTLET_DETAIL,
   OutletDetailPage
 )
-const shopeePageContainer = createPageContainer<Store.IState>(PACKAGE_NAME, store, PluginInit)
-export const PageContainer: typeof shopeePageContainer = (
+const hahahaPageContainer = createPageContainer<Store.IState>(PACKAGE_NAME, store, PluginInit)
+export const PageContainer: typeof hahahaPageContainer = (
   pageName,
   OriginalComponent,
   mapStateToProps,
   mapDispatchToProps
 ) => {
-  shopeePageContainer(
+  hahahaPageContainer(
     pageName,
     // @ts-ignore
     // OriginalComponent,
@@ -28,7 +28,6 @@ export const PageContainer: typeof shopeePageContainer = (
   )
 }
 
-xxxxRegistry = createShopeeRegistry(AppRegistry.registerComponen）
+xxxxRegistry = createhahahaRegistry(AppRegistry.registerComponen）
 xxxxRegistry.registerComponent(pageName, () => Container);
 ```
-
